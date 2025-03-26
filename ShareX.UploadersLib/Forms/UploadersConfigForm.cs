@@ -28,7 +28,6 @@ using ShareX.HelpersLib;
 using ShareX.UploadersLib.FileUploaders;
 using ShareX.UploadersLib.ImageUploaders;
 using ShareX.UploadersLib.Properties;
-using ShareX.UploadersLib.TextUploaders;
 using ShareX.UploadersLib.URLShorteners;
 using System;
 using System.Collections.Generic;
@@ -164,30 +163,7 @@ namespace ShareX.UploadersLib
 
         private void LoadTextUploaderSettings()
         {
-            #region Pastebin
 
-            txtPastebinUsername.Text = Config.PastebinSettings.Username;
-            txtPastebinPassword.Text = Config.PastebinSettings.Password;
-            UpdatePastebinStatus();
-            cbPastebinPrivacy.Items.AddRange(Helpers.GetLocalizedEnumDescriptions<PastebinPrivacy>());
-            cbPastebinPrivacy.SelectedIndex = (int)Config.PastebinSettings.Exposure;
-            cbPastebinExpiration.Items.AddRange(Helpers.GetLocalizedEnumDescriptions<PastebinExpiration>());
-            cbPastebinExpiration.SelectedIndex = (int)Config.PastebinSettings.Expiration;
-            cbPastebinSyntax.Items.AddRange(Pastebin.GetSyntaxList().ToArray());
-            cbPastebinSyntax.SelectedIndex = 0;
-            for (int i = 0; i < cbPastebinSyntax.Items.Count; i++)
-            {
-                PastebinSyntaxInfo pastebinSyntaxInfo = (PastebinSyntaxInfo)cbPastebinSyntax.Items[i];
-                if (pastebinSyntaxInfo.Value.Equals(Config.PastebinSettings.TextFormat, StringComparison.OrdinalIgnoreCase))
-                {
-                    cbPastebinSyntax.SelectedIndex = i;
-                    break;
-                }
-            }
-            txtPastebinTitle.Text = Config.PastebinSettings.Title;
-            cbPastebinRaw.Checked = Config.PastebinSettings.RawURL;
-
-            #endregion Pastebin
 
             #region Paste.ee
 
@@ -732,164 +708,6 @@ namespace ShareX.UploadersLib
         #endregion vgy.me
 
         #endregion Image uploaders
-
-        #region Text uploaders
-
-        #region Pastebin
-
-        private void txtPastebinUsername_TextChanged(object sender, EventArgs e)
-        {
-            Config.PastebinSettings.Username = txtPastebinUsername.Text;
-        }
-
-        private void txtPastebinPassword_TextChanged(object sender, EventArgs e)
-        {
-            Config.PastebinSettings.Password = txtPastebinPassword.Text;
-        }
-
-        private void btnPastebinRegister_Click(object sender, EventArgs e)
-        {
-            URLHelpers.OpenURL("http://pastebin.com/signup");
-        }
-
-        private void btnPastebinLogin_Click(object sender, EventArgs e)
-        {
-            PastebinLogin();
-        }
-
-        private void cbPastebinPrivacy_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            Config.PastebinSettings.Exposure = (PastebinPrivacy)cbPastebinPrivacy.SelectedIndex;
-        }
-
-        private void cbPastebinExpiration_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            Config.PastebinSettings.Expiration = (PastebinExpiration)cbPastebinExpiration.SelectedIndex;
-        }
-
-        private void cbPastebinSyntax_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            Config.PastebinSettings.TextFormat = ((PastebinSyntaxInfo)cbPastebinSyntax.SelectedItem).Value;
-        }
-
-        private void txtPastebinTitle_TextChanged(object sender, EventArgs e)
-        {
-            Config.PastebinSettings.Title = txtPastebinTitle.Text;
-        }
-
-        private void cbPastebinRaw_CheckedChanged(object sender, EventArgs e)
-        {
-            Config.PastebinSettings.RawURL = cbPastebinRaw.Checked;
-        }
-
-        #endregion Pastebin
-
-        #region Paste.ee
-
-        private void btnPaste_eeGetUserKey_Click(object sender, EventArgs e)
-        {
-            URLHelpers.OpenURL($"https://paste.ee/account/api/authorize/{APIKeys.Paste_eeApplicationKey}");
-        }
-
-        private void txtPaste_eeUserAPIKey_TextChanged(object sender, EventArgs e)
-        {
-            Config.Paste_eeUserKey = txtPaste_eeUserAPIKey.Text;
-        }
-
-        #endregion Paste.ee
-
-        #region Gist
-
-        private void oAuth2Gist_OpenButtonClicked()
-        {
-            OAuth2Info oauth = new OAuth2Info(APIKeys.GitHubID, APIKeys.GitHubSecret);
-            Config.GistOAuth2Info = OAuth2Open(new GitHubGist(oauth));
-        }
-
-        private void oAuth2Gist_CompleteButtonClicked(string code)
-        {
-            OAuth2Complete(new GitHubGist(Config.GistOAuth2Info), code, oAuth2Gist);
-        }
-
-        private void oAuth2Gist_ClearButtonClicked()
-        {
-            Config.GistOAuth2Info = null;
-        }
-
-        private void cbGistPublishPublic_CheckedChanged(object sender, EventArgs e)
-        {
-            Config.GistPublishPublic = cbGistPublishPublic.Checked;
-        }
-
-        private void cbGistUseRawURL_CheckedChanged(object sender, EventArgs e)
-        {
-            Config.GistRawURL = cbGistUseRawURL.Checked;
-        }
-
-        private void txtGistCustomURL_TextChanged(object sender, EventArgs e)
-        {
-            Config.GistCustomURL = txtGistCustomURL.Text;
-        }
-
-        #endregion Gist
-
-        #region uPaste
-
-        private void txtUpasteUserKey_TextChanged(object sender, EventArgs e)
-        {
-            Config.UpasteUserKey = txtUpasteUserKey.Text;
-        }
-
-        private void cbUpasteIsPublic_CheckedChanged(object sender, EventArgs e)
-        {
-            Config.UpasteIsPublic = cbUpasteIsPublic.Checked;
-        }
-
-        #endregion uPaste
-
-        #region Hastebin
-
-        private void txtHastebinCustomDomain_TextChanged(object sender, EventArgs e)
-        {
-            Config.HastebinCustomDomain = txtHastebinCustomDomain.Text;
-        }
-
-        private void txtHastebinSyntaxHighlighting_TextChanged(object sender, EventArgs e)
-        {
-            Config.HastebinSyntaxHighlighting = txtHastebinSyntaxHighlighting.Text;
-        }
-
-        private void cbHastebinUseFileExtension_CheckedChanged(object sender, EventArgs e)
-        {
-            Config.HastebinUseFileExtension = cbHastebinUseFileExtension.Checked;
-        }
-
-        #endregion Hastebin
-
-        #region OneTimeSecret
-
-        private void txtOneTimeSecretEmail_TextChanged(object sender, EventArgs e)
-        {
-            Config.OneTimeSecretAPIUsername = txtOneTimeSecretEmail.Text;
-        }
-
-        private void txtOneTimeSecretAPIKey_TextChanged(object sender, EventArgs e)
-        {
-            Config.OneTimeSecretAPIKey = txtOneTimeSecretAPIKey.Text;
-        }
-
-        #endregion OneTimeSecret
-
-        #region Pastie
-
-        private void cbPastieIsPublic_CheckedChanged(object sender, EventArgs e)
-        {
-            Config.PastieIsPublic = cbPastieIsPublic.Checked;
-        }
-
-        #endregion Pastie
-
-        #endregion Text uploaders
 
         #region File uploaders
 

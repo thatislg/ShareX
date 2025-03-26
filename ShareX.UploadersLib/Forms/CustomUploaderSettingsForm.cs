@@ -29,7 +29,6 @@ using ShareX.UploadersLib.FileUploaders;
 using ShareX.UploadersLib.ImageUploaders;
 using ShareX.UploadersLib.Properties;
 using ShareX.UploadersLib.SharingServices;
-using ShareX.UploadersLib.TextUploaders;
 using ShareX.UploadersLib.URLShorteners;
 using System;
 using System.Collections.Generic;
@@ -633,22 +632,6 @@ namespace ShareX.UploadersLib
                                 result.Errors.Add(imageUploader.Errors);
                             }
                             break;
-                        case CustomUploaderDestinationType.TextUploader:
-                            CustomTextUploader textUploader = new CustomTextUploader(item);
-                            using (TextUploadForm form = new TextUploadForm("ShareX text upload test"))
-                            {
-                                if (form.ShowDialog() == DialogResult.OK)
-                                {
-                                    string text = form.Content;
-
-                                    if (!string.IsNullOrEmpty(text))
-                                    {
-                                        result = textUploader.UploadText(text, "Test.txt");
-                                        result.Errors.Add(textUploader.Errors);
-                                    }
-                                }
-                            }
-                            break;
                         case CustomUploaderDestinationType.FileUploader:
                             using (Stream stream = ShareXResources.Logo.GetStream())
                             {
@@ -675,7 +658,6 @@ namespace ShareX.UploadersLib
                     result.Errors.Add(e.Message);
                 }
             });
-
             if (!IsDisposed)
             {
                 lastResult = result;

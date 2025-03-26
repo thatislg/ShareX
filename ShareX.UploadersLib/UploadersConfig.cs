@@ -26,7 +26,6 @@
 using ShareX.HelpersLib;
 using ShareX.UploadersLib.FileUploaders;
 using ShareX.UploadersLib.ImageUploaders;
-using ShareX.UploadersLib.TextUploaders;
 using ShareX.UploadersLib.URLShorteners;
 using System.Collections.Generic;
 
@@ -46,12 +45,6 @@ namespace ShareX.UploadersLib
         #endregion Image uploaders
 
         #region Text uploaders
-
-        #region Pastebin
-
-        public PastebinSettings PastebinSettings { get; set; } = new PastebinSettings();
-
-        #endregion Pastebin
 
         #region Paste.ee
 

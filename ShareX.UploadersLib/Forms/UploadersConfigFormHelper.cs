@@ -27,7 +27,6 @@ using ShareX.HelpersLib;
 using ShareX.UploadersLib.FileUploaders;
 using ShareX.UploadersLib.ImageUploaders;
 using ShareX.UploadersLib.Properties;
-using ShareX.UploadersLib.TextUploaders;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -512,47 +511,7 @@ namespace ShareX.UploadersLib
 
         #endregion SendSpace
 
-        #region Pastebin
-
-        public void PastebinLogin()
-        {
-            if (Config.PastebinSettings != null)
-            {
-                try
-                {
-                    Pastebin pastebin = new Pastebin(APIKeys.PastebinKey, Config.PastebinSettings);
-
-                    if (pastebin.Login())
-                    {
-                        UpdatePastebinStatus();
-                        MessageBox.Show(Resources.UploadersConfigForm_Login_successful, "ShareX", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
-                    else
-                    {
-                        UpdatePastebinStatus();
-                        MessageBox.Show(Resources.UploadersConfigForm_Login_failed, "ShareX", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                }
-                catch (Exception ex)
-                {
-                    ex.ShowError();
-                }
-            }
-        }
-
-        public void UpdatePastebinStatus()
-        {
-            if (Config.PastebinSettings == null || string.IsNullOrEmpty(Config.PastebinSettings.UserKey))
-            {
-                lblPastebinLoginStatus.Text = Resources.UploadersConfigForm_UpdatePastebinStatus_NotLoggedIn;
-            }
-            else
-            {
-                lblPastebinLoginStatus.Text = Resources.UploadersConfigForm_UpdatePastebinStatus_LoggedIn;
-            }
-        }
-
-        #endregion Pastebin
+        
 
         #region Pushbullet
 
