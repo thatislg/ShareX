@@ -851,15 +851,6 @@
             this.tsddbAfterCaptureTasks.Image = global::ShareX.Properties.Resources.image_export;
             resources.ApplyResources(this.tsddbAfterCaptureTasks, "tsddbAfterCaptureTasks");
             this.tsddbAfterCaptureTasks.Name = "tsddbAfterCaptureTasks";
-<<<<<<< HEAD
-            //
-            // tsddbAfterUploadTasks
-            //
-            this.tsddbAfterUploadTasks.Image = global::ShareX.Properties.Resources.upload_cloud;
-            resources.ApplyResources(this.tsddbAfterUploadTasks, "tsddbAfterUploadTasks");
-            this.tsddbAfterUploadTasks.Name = "tsddbAfterUploadTasks";
-=======
->>>>>>> develop
             // 
             // tsbApplicationSettings
             //
