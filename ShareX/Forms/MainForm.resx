@@ -1,17 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
-  <!--
-    Microsoft ResX Schema
-
+  <!-- 
+    Microsoft ResX Schema 
+    
     Version 2.0
-
-    The primary goals of this format is to allow a simple XML format
-    that is mostly human readable. The generation and parsing of the
-    various data types are done through the TypeConverter classes
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
     associated with the data types.
-
+    
     Example:
-
+    
     ... ado.net/XML headers & schema ...
     <resheader name="resmimetype">text/microsoft-resx</resheader>
     <resheader name="version">2.0</resheader>
@@ -26,36 +26,36 @@
         <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
         <comment>This is a comment</comment>
     </data>
-
-    There are any number of "resheader" rows that contain simple
+                
+    There are any number of "resheader" rows that contain simple 
     name/value pairs.
-
-    Each data row contains a name, and value. The row also contains a
-    type or mimetype. Type corresponds to a .NET class that support
-    text/value conversion through the TypeConverter architecture.
-    Classes that don't support this are serialized and stored with the
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
     mimetype set.
-
-    The mimetype is used for serialized objects, and tells the
-    ResXResourceReader how to depersist the object. This is currently not
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
     extensible. For a given mimetype the value must be set accordingly:
-
-    Note - application/x-microsoft.net.object.binary.base64 is the format
-    that the ResXResourceWriter will generate, however the reader can
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
     read any of the formats listed below.
-
+    
     mimetype: application/x-microsoft.net.object.binary.base64
-    value   : The object must be serialized with
+    value   : The object must be serialized with 
             : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
             : and then encoded with base64 encoding.
-
+    
     mimetype: application/x-microsoft.net.object.soap.base64
-    value   : The object must be serialized with
+    value   : The object must be serialized with 
             : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
             : and then encoded with base64 encoding.
 
     mimetype: application/x-microsoft.net.object.bytearray.base64
-    value   : The object must be serialized into a byte array
+    value   : The object must be serialized into a byte array 
             : using a System.ComponentModel.TypeConverter
             : and then encoded with base64 encoding.
     -->
@@ -395,60 +395,6 @@
   </data>
   <data name="tsddbCapture.Text" xml:space="preserve">
     <value>Capture</value>
-  </data>
-  <data name="tsmiUploadFile.Size" type="System.Drawing.Size, System.Drawing">
-    <value>203, 22</value>
-  </data>
-  <data name="tsmiUploadFile.Text" xml:space="preserve">
-    <value>Upload file...</value>
-  </data>
-  <data name="tsmiUploadFolder.Size" type="System.Drawing.Size, System.Drawing">
-    <value>203, 22</value>
-  </data>
-  <data name="tsmiUploadFolder.Text" xml:space="preserve">
-    <value>Upload folder...</value>
-  </data>
-  <data name="tsmiUploadClipboard.Size" type="System.Drawing.Size, System.Drawing">
-    <value>203, 22</value>
-  </data>
-  <data name="tsmiUploadClipboard.Text" xml:space="preserve">
-    <value>Upload from clipboard...</value>
-  </data>
-  <data name="tsmiUploadText.Size" type="System.Drawing.Size, System.Drawing">
-    <value>203, 22</value>
-  </data>
-  <data name="tsmiUploadText.Text" xml:space="preserve">
-    <value>Upload text...</value>
-  </data>
-  <data name="tsmiUploadURL.Size" type="System.Drawing.Size, System.Drawing">
-    <value>203, 22</value>
-  </data>
-  <data name="tsmiUploadURL.Text" xml:space="preserve">
-    <value>Upload from URL...</value>
-  </data>
-  <data name="tsmiUploadDragDrop.Size" type="System.Drawing.Size, System.Drawing">
-    <value>203, 22</value>
-  </data>
-  <data name="tsmiUploadDragDrop.Text" xml:space="preserve">
-    <value>Drag and drop upload...</value>
-  </data>
-  <data name="tsmiShortenURL.Size" type="System.Drawing.Size, System.Drawing">
-    <value>203, 22</value>
-  </data>
-  <data name="tsmiShortenURL.Text" xml:space="preserve">
-    <value>Shorten URL...</value>
-  </data>
-  <data name="tsddbUpload.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleLeft</value>
-  </data>
-  <data name="tsddbUpload.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
-    <value>Magenta</value>
-  </data>
-  <data name="tsddbUpload.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 20</value>
-  </data>
-  <data name="tsddbUpload.Text" xml:space="preserve">
-    <value>Upload</value>
   </data>
   <data name="tsddbWorkflows.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>BottomLeft</value>
@@ -2059,54 +2005,6 @@
     <value>tsmiScreenshotDelay5</value>
   </data>
   <data name="&gt;&gt;tsmiScreenshotDelay5.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tsddbUpload.Name" xml:space="preserve">
-    <value>tsddbUpload</value>
-  </data>
-  <data name="&gt;&gt;tsddbUpload.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripDropDownButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tsmiUploadFile.Name" xml:space="preserve">
-    <value>tsmiUploadFile</value>
-  </data>
-  <data name="&gt;&gt;tsmiUploadFile.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tsmiUploadFolder.Name" xml:space="preserve">
-    <value>tsmiUploadFolder</value>
-  </data>
-  <data name="&gt;&gt;tsmiUploadFolder.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tsmiUploadClipboard.Name" xml:space="preserve">
-    <value>tsmiUploadClipboard</value>
-  </data>
-  <data name="&gt;&gt;tsmiUploadClipboard.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tsmiUploadText.Name" xml:space="preserve">
-    <value>tsmiUploadText</value>
-  </data>
-  <data name="&gt;&gt;tsmiUploadText.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tsmiUploadURL.Name" xml:space="preserve">
-    <value>tsmiUploadURL</value>
-  </data>
-  <data name="&gt;&gt;tsmiUploadURL.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tsmiUploadDragDrop.Name" xml:space="preserve">
-    <value>tsmiUploadDragDrop</value>
-  </data>
-  <data name="&gt;&gt;tsmiUploadDragDrop.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tsmiShortenURL.Name" xml:space="preserve">
-    <value>tsmiShortenURL</value>
-  </data>
-  <data name="&gt;&gt;tsmiShortenURL.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;tsddbWorkflows.Name" xml:space="preserve">
