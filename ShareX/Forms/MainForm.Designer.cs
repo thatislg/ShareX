@@ -103,7 +103,6 @@
             this.tsmiDNSChanger = new System.Windows.Forms.ToolStripMenuItem();
             this.tssMain1 = new System.Windows.Forms.ToolStripSeparator();
             this.tsddbAfterCaptureTasks = new System.Windows.Forms.ToolStripDropDownButton();
-            this.tsddbAfterUploadTasks = new System.Windows.Forms.ToolStripDropDownButton();
             this.tsbApplicationSettings = new System.Windows.Forms.ToolStripButton();
             this.tsbTaskSettings = new System.Windows.Forms.ToolStripButton();
             this.tsbHotkeySettings = new System.Windows.Forms.ToolStripButton();
@@ -390,7 +389,6 @@
             this.tsddbTools,
             this.tssMain1,
             this.tsddbAfterCaptureTasks,
-            this.tsddbAfterUploadTasks,
             this.tsbApplicationSettings,
             this.tsbTaskSettings,
             this.tsbHotkeySettings,
@@ -853,12 +851,15 @@
             this.tsddbAfterCaptureTasks.Image = global::ShareX.Properties.Resources.image_export;
             resources.ApplyResources(this.tsddbAfterCaptureTasks, "tsddbAfterCaptureTasks");
             this.tsddbAfterCaptureTasks.Name = "tsddbAfterCaptureTasks";
+<<<<<<< HEAD
             //
             // tsddbAfterUploadTasks
             //
             this.tsddbAfterUploadTasks.Image = global::ShareX.Properties.Resources.upload_cloud;
             resources.ApplyResources(this.tsddbAfterUploadTasks, "tsddbAfterUploadTasks");
             this.tsddbAfterUploadTasks.Name = "tsddbAfterUploadTasks";
+=======
+>>>>>>> develop
             // 
             // tsbApplicationSettings
             //
@@ -2309,7 +2310,6 @@
         private System.Windows.Forms.ToolStripDropDownButton tsddbAfterCaptureTasks;
         private System.Windows.Forms.ToolStripMenuItem tsmiTrayAfterCaptureTasks;
         private System.Windows.Forms.ToolStripMenuItem tsmiTrayURLSharingServices;
-        private System.Windows.Forms.ToolStripDropDownButton tsddbAfterUploadTasks;
         private System.Windows.Forms.ToolStripButton tsbScreenshotsFolder;
         private System.Windows.Forms.ToolStripMenuItem tsmiTrayAfterUploadTasks;
         private System.Windows.Forms.ToolStripSeparator tssUploadInfo1;

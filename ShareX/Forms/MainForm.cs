@@ -45,7 +45,8 @@ namespace ShareX
         private bool forceClose, trayMenuSaveSettings = true;
         private int trayClickCount = 0;
         private UploadInfoManager uim;
-        private ToolStripDropDownItem tsmiImageFileUploaders, tsmiTrayImageFileUploaders, tsmiTextFileUploaders, tsmiTrayTextFileUploaders;
+        // private ToolStripDropDownItem tsmiImageFileUploaders, tsmiTrayImageFileUploaders, tsmiTextFileUploaders, tsmiTrayTextFileUploaders;
+        private ToolStripDropDownItem tsmiTrayImageFileUploaders,tsmiTrayTextFileUploaders;
         private ImageFilesCache actionsMenuIconCache = new ImageFilesCache();
 
         public MainForm()
@@ -108,55 +109,55 @@ namespace ShareX
             tsddbAfterCaptureTasks.DropDownOpening += TsddbAfterCaptureTasks_DropDownOpening;
             tsmiTrayAfterCaptureTasks.DropDownOpening += TsmiTrayAfterCaptureTasks_DropDownOpening;
 
-            AddMultiEnumItems<AfterUploadTasks>(x => Program.DefaultTaskSettings.AfterUploadJob = Program.DefaultTaskSettings.AfterUploadJob.Swap(x),
-                new ToolStripDropDownItem[] { tsddbAfterUploadTasks, tsmiTrayAfterUploadTasks });
+            //AddMultiEnumItems<AfterUploadTasks>(x => Program.DefaultTaskSettings.AfterUploadJob = Program.DefaultTaskSettings.AfterUploadJob.Swap(x),
+            //    new ToolStripDropDownItem[] { tsddbAfterUploadTasks, tsmiTrayAfterUploadTasks });
 
-            AddEnumItems<ImageDestination>(x =>
-            {
-                Program.DefaultTaskSettings.ImageDestination = x;
+            //AddEnumItems<ImageDestination>(x =>
+            //{
+            //    Program.DefaultTaskSettings.ImageDestination = x;
 
-                if (x == ImageDestination.FileUploader)
-                {
-                    SetEnumChecked(Program.DefaultTaskSettings.ImageFileDestination, tsmiImageFileUploaders, tsmiTrayImageFileUploaders);
-                }
-                else
-                {
-                    Uncheck(tsmiImageFileUploaders, tsmiTrayImageFileUploaders);
-                }
-            }, tsmiTrayImageUploaders);
+            //    if (x == ImageDestination.FileUploader)
+            //    {
+            //        SetEnumChecked(Program.DefaultTaskSettings.ImageFileDestination, tsmiImageFileUploaders, tsmiTrayImageFileUploaders);
+            //    }
+            //    else
+            //    {
+            //        Uncheck(tsmiImageFileUploaders, tsmiTrayImageFileUploaders);
+            //    }
+            //}, tsmiTrayImageUploaders);
             // tsmiImageUploaders, tsmiTrayImageUploaders);
             // tsmiImageFileUploaders = (ToolStripDropDownItem)tsmiImageUploaders.DropDownItems[tsmiImageUploaders.DropDownItems.Count - 1];
-            tsmiTrayImageFileUploaders = (ToolStripDropDownItem)tsmiTrayImageUploaders.DropDownItems[tsmiTrayImageUploaders.DropDownItems.Count - 1];
-            AddEnumItems<FileDestination>(x =>
-            {
-                Program.DefaultTaskSettings.ImageFileDestination = x;
-                tsmiImageFileUploaders.PerformClick();
-                tsmiTrayImageFileUploaders.PerformClick();
-            }, tsmiImageFileUploaders, tsmiTrayImageFileUploaders);
+            // tsmiTrayImageFileUploaders = (ToolStripDropDownItem)tsmiTrayImageUploaders.DropDownItems[tsmiTrayImageUploaders.DropDownItems.Count - 1];
+            //AddEnumItems<FileDestination>(x =>
+            //{
+            //    Program.DefaultTaskSettings.ImageFileDestination = x;
+            //    tsmiImageFileUploaders.PerformClick();
+            //    tsmiTrayImageFileUploaders.PerformClick();
+            //}, tsmiImageFileUploaders, tsmiTrayImageFileUploaders);
 
-            AddEnumItems<TextDestination>(x =>
-            {
-                Program.DefaultTaskSettings.TextDestination = x;
+            //AddEnumItems<TextDestination>(x =>
+            //{
+            //    Program.DefaultTaskSettings.TextDestination = x;
 
-                if (x == TextDestination.FileUploader)
-                {
-                    SetEnumChecked(Program.DefaultTaskSettings.TextFileDestination, tsmiTextFileUploaders, tsmiTrayTextFileUploaders);
-                }
-                else
-                {
-                    Uncheck(tsmiTextFileUploaders, tsmiTrayTextFileUploaders);
-                }
-            }, tsmiTrayTextUploaders);
+            //    if (x == TextDestination.FileUploader)
+            //    {
+            //        SetEnumChecked(Program.DefaultTaskSettings.TextFileDestination, tsmiTextFileUploaders, tsmiTrayTextFileUploaders);
+            //    }
+            //    else
+            //    {
+            //        Uncheck(tsmiTextFileUploaders, tsmiTrayTextFileUploaders);
+            //    }
+            //}, tsmiTrayTextUploaders);
             // tsmiTextUploaders, tsmiTrayTextUploaders);
             // tsmiTextFileUploaders = (ToolStripDropDownItem)tsmiTextUploaders.DropDownItems[tsmiTextUploaders.DropDownItems.Count - 1];
-            tsmiTrayTextFileUploaders = (ToolStripDropDownItem)tsmiTrayTextUploaders.DropDownItems[tsmiTrayTextUploaders.DropDownItems.Count - 1];
+            // tsmiTrayTextFileUploaders = (ToolStripDropDownItem)tsmiTrayTextUploaders.DropDownItems[tsmiTrayTextUploaders.DropDownItems.Count - 1];
 
-            AddEnumItems<FileDestination>(x =>
-            {
-                Program.DefaultTaskSettings.TextFileDestination = x;
-                tsmiTextFileUploaders.PerformClick();
-                tsmiTrayTextFileUploaders.PerformClick();
-            }, tsmiTextFileUploaders, tsmiTrayTextFileUploaders);
+            //AddEnumItems<FileDestination>(x =>
+            //{
+            //    Program.DefaultTaskSettings.TextFileDestination = x;
+            //    tsmiTextFileUploaders.PerformClick();
+            //    tsmiTrayTextFileUploaders.PerformClick();
+            //}, tsmiTextFileUploaders, tsmiTrayTextFileUploaders);
 
             // AddEnumItems<FileDestination>(x => Program.DefaultTaskSettings.FileDestination = x, tsmiFileUploaders, tsmiTrayFileUploaders);
 
@@ -195,7 +196,7 @@ namespace ShareX
 
             foreach (ToolStripDropDownItem dropDownItem in new ToolStripDropDownItem[]
             {
-                tsddbAfterCaptureTasks, tsddbAfterUploadTasks,  tsmiImageFileUploaders, tsmiTextFileUploaders, 
+                tsddbAfterCaptureTasks,
                 tsmiTrayAfterCaptureTasks, tsmiTrayAfterUploadTasks, tsmiTrayImageUploaders, tsmiTrayImageFileUploaders,
                 tsmiTrayTextUploaders, tsmiTrayTextFileUploaders, tsmiTrayFileUploaders, tsmiTrayURLShorteners, tsmiTrayURLSharingServices, tsmiScreenshotDelay,
                 tsmiTrayScreenshotDelay
@@ -218,7 +219,7 @@ namespace ShareX
             if (SystemOptions.DisableUpload)
             {
                 tsddbUpload.Visible = false;
-                tsddbAfterUploadTasks.Visible = false;
+                // tsddbAfterUploadTasks.Visible = false;
                 // tsddbDestinations.Visible = false;
                 tsmiTestImageUpload.Visible = false;
                 tsmiTestTextUpload.Visible = false;
@@ -1007,11 +1008,11 @@ namespace ShareX
         public void UpdateCheckStates()
         {
             SetMultiEnumChecked(Program.DefaultTaskSettings.AfterCaptureJob, tsddbAfterCaptureTasks, tsmiTrayAfterCaptureTasks);
-            SetMultiEnumChecked(Program.DefaultTaskSettings.AfterUploadJob, tsddbAfterUploadTasks, tsmiTrayAfterUploadTasks);
+            // SetMultiEnumChecked(Program.DefaultTaskSettings.AfterUploadJob, tsddbAfterUploadTasks, tsmiTrayAfterUploadTasks);
             // SetEnumChecked(Program.DefaultTaskSettings.ImageDestination, tsmiImageUploaders, tsmiTrayImageUploaders);
-            SetImageFileDestinationChecked(Program.DefaultTaskSettings.ImageDestination, Program.DefaultTaskSettings.ImageFileDestination, tsmiImageFileUploaders, tsmiTrayImageFileUploaders);
+            // SetImageFileDestinationChecked(Program.DefaultTaskSettings.ImageDestination, Program.DefaultTaskSettings.ImageFileDestination, tsmiImageFileUploaders, tsmiTrayImageFileUploaders);
             // SetEnumChecked(Program.DefaultTaskSettings.TextDestination, tsmiTextUploaders, tsmiTrayTextUploaders);
-            SetTextFileDestinationChecked(Program.DefaultTaskSettings.TextDestination, Program.DefaultTaskSettings.TextFileDestination, tsmiTextFileUploaders, tsmiTrayTextFileUploaders);
+            // SetTextFileDestinationChecked(Program.DefaultTaskSettings.TextDestination, Program.DefaultTaskSettings.TextFileDestination, tsmiTextFileUploaders, tsmiTrayTextFileUploaders);
             // SetEnumChecked(Program.DefaultTaskSettings.FileDestination, tsmiFileUploaders, tsmiTrayFileUploaders);
             // SetEnumChecked(Program.DefaultTaskSettings.URLShortenerDestination, tsmiURLShorteners, tsmiTrayURLShorteners);
             // SetEnumChecked(Program.DefaultTaskSettings.URLSharingServiceDestination, tsmiURLSharingServices, tsmiTrayURLSharingServices);
