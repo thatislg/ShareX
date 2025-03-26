@@ -874,8 +874,6 @@ namespace ShareX
                 dgvHotkeys.BackgroundColor = SystemColors.Window;
             }
 
-            tsbDiscord.Image = ShareXResources.IsDarkTheme ? Resources.Discord_white : Resources.Discord_black;
-
             tsmiQRCode.Image = TaskHelpers.FindMenuIcon(HotkeyType.QRCode);
             tsmiTrayQRCode.Image = TaskHelpers.FindMenuIcon(HotkeyType.QRCode);
             tsmiShowQRCode.Image = TaskHelpers.FindMenuIcon(HotkeyType.QRCode);
@@ -1962,11 +1960,6 @@ namespace ShareX
         private void tsbX_Click(object sender, EventArgs e)
         {
             URLHelpers.OpenURL(Links.XFollow);
-        }
-
-        private void tsbDiscord_Click(object sender, EventArgs e)
-        {
-            URLHelpers.OpenURL(Links.Discord);
         }
 
         private void tsbAbout_Click(object sender, EventArgs e)
