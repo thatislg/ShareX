@@ -86,40 +86,7 @@ namespace ShareX
 
                 cbOverrideDestinationSettings.Checked = !TaskSettings.UseDefaultDestinations;
                 btnDestinations.Enabled = !TaskSettings.UseDefaultDestinations;
-                AddEnumItems<ImageDestination>(x =>
-                {
-                    TaskSettings.ImageDestination = x;
-
-                    if (x == ImageDestination.FileUploader)
-                    {
-                        SetEnumChecked(TaskSettings.ImageFileDestination, tsmiImageFileUploaders);
-                    }
-                    else
-                    {
-                        MainForm.Uncheck(tsmiImageFileUploaders);
-                    }
-                }, tsmiImageUploaders);
-                tsmiImageFileUploaders = (ToolStripDropDownItem)tsmiImageUploaders.DropDownItems[tsmiImageUploaders.DropDownItems.Count - 1];
-                AddEnumItems<FileDestination>(x =>
-                {
-                    TaskSettings.ImageFileDestination = x;
-                    tsmiImageFileUploaders.PerformClick();
-                }, tsmiImageFileUploaders);
-                SetEnumChecked(TaskSettings.ImageDestination, tsmiImageUploaders);
-                MainForm.SetImageFileDestinationChecked(TaskSettings.ImageDestination, TaskSettings.ImageFileDestination, tsmiImageFileUploaders);
-                AddEnumItems<TextDestination>(x =>
-                {
-                    TaskSettings.TextDestination = x;
-
-                    if (x == TextDestination.FileUploader)
-                    {
-                        SetEnumChecked(TaskSettings.TextFileDestination, tsmiTextFileUploaders);
-                    }
-                    else
-                    {
-                        MainForm.Uncheck(tsmiTextFileUploaders);
-                    }
-                }, tsmiTextUploaders);
+               
                 tsmiTextFileUploaders = (ToolStripDropDownItem)tsmiTextUploaders.DropDownItems[tsmiTextUploaders.DropDownItems.Count - 1];
                 AddEnumItems<FileDestination>(x =>
                 {
@@ -176,7 +143,7 @@ namespace ShareX
                 cbOverrideImageSettings.Checked = !TaskSettings.UseDefaultImageSettings;
                 cbOverrideCaptureSettings.Checked = !TaskSettings.UseDefaultCaptureSettings;
                 cbOverrideActions.Checked = !TaskSettings.UseDefaultActions;
-                cbOverrideUploadSettings.Checked = !TaskSettings.UseDefaultUploadSettings;
+                // cbOverrideUploadSettings.Checked = !TaskSettings.UseDefaultUploadSettings;
                 cbOverrideToolsSettings.Checked = !TaskSettings.UseDefaultToolsSettings;
                 cbOverrideAdvancedSettings.Checked = !TaskSettings.UseDefaultAdvancedSettings;
             }
@@ -397,60 +364,6 @@ namespace ShareX
 
             #endregion Capture
 
-            #region Upload
-
-            #region File naming
-
-            txtNameFormatPattern.Text = TaskSettings.UploadSettings.NameFormatPattern;
-            txtNameFormatPatternActiveWindow.Text = TaskSettings.UploadSettings.NameFormatPatternActiveWindow;
-            CodeMenu.Create<CodeMenuEntryFilename>(txtNameFormatPattern, CodeMenuEntryFilename.n, CodeMenuEntryFilename.t, CodeMenuEntryFilename.pn);
-            CodeMenu.Create<CodeMenuEntryFilename>(txtNameFormatPatternActiveWindow, CodeMenuEntryFilename.n);
-            cbFileUploadUseNamePattern.Checked = TaskSettings.UploadSettings.FileUploadUseNamePattern;
-            nudAutoIncrementNumber.SetValue(Program.Settings.NameParserAutoIncrementNumber);
-            UpdateNameFormatPreviews();
-            cbNameFormatCustomTimeZone.Checked = cbNameFormatTimeZone.Enabled = TaskSettings.UploadSettings.UseCustomTimeZone;
-            cbNameFormatTimeZone.Items.AddRange(TimeZoneInfo.GetSystemTimeZones().ToArray());
-            for (int i = 0; i < cbNameFormatTimeZone.Items.Count; i++)
-            {
-                if (cbNameFormatTimeZone.Items[i].Equals(TaskSettings.UploadSettings.CustomTimeZone))
-                {
-                    cbNameFormatTimeZone.SelectedIndex = i;
-                    break;
-                }
-            }
-            cbFileUploadReplaceProblematicCharacters.Checked = TaskSettings.UploadSettings.FileUploadReplaceProblematicCharacters;
-            cbURLRegexReplace.Checked = TaskSettings.UploadSettings.URLRegexReplace;
-            lblURLRegexReplacePattern.Enabled = txtURLRegexReplacePattern.Enabled =
-                lblURLRegexReplaceReplacement.Enabled = txtURLRegexReplaceReplacement.Enabled = TaskSettings.UploadSettings.URLRegexReplace;
-            txtURLRegexReplacePattern.Text = TaskSettings.UploadSettings.URLRegexReplacePattern;
-            txtURLRegexReplaceReplacement.Text = TaskSettings.UploadSettings.URLRegexReplaceReplacement;
-
-            #endregion File naming
-
-            #region Clipboard upload
-
-            cbClipboardUploadURLContents.Checked = TaskSettings.UploadSettings.ClipboardUploadURLContents;
-            cbClipboardUploadShortenURL.Checked = TaskSettings.UploadSettings.ClipboardUploadShortenURL;
-            cbClipboardUploadShareURL.Checked = TaskSettings.UploadSettings.ClipboardUploadShareURL;
-            cbClipboardUploadAutoIndexFolder.Checked = TaskSettings.UploadSettings.ClipboardUploadAutoIndexFolder;
-
-            #endregion Clipboard upload
-
-            #region Uploader filters
-
-            cbUploaderFiltersDestination.Items.AddRange(UploaderFactory.AllGenericUploaderServices.OrderBy(x => x.ServiceName).ToArray());
-
-            if (TaskSettings.UploadSettings.UploaderFilters == null) TaskSettings.UploadSettings.UploaderFilters = new List<UploaderFilter>();
-
-            foreach (UploaderFilter filter in TaskSettings.UploadSettings.UploaderFilters)
-            {
-                AddUploaderFilterToList(filter);
-            }
-
-            #endregion Uploader filters
-
-            #endregion Upload
-
             #region Actions
 
             TaskHelpers.AddDefaultExternalPrograms(TaskSettings);
@@ -543,7 +456,7 @@ namespace ShareX
         {
             if (Program.UploadersConfig != null)
             {
-                EnableDisableToolStripMenuItems<ImageDestination>(tsmiImageUploaders);
+                
                 EnableDisableToolStripMenuItems<FileDestination>(tsmiImageFileUploaders);
                 EnableDisableToolStripMenuItems<TextDestination>(tsmiTextUploaders);
                 EnableDisableToolStripMenuItems<FileDestination>(tsmiTextFileUploaders);
@@ -732,9 +645,9 @@ namespace ShareX
             btnAfterUpload.Text = string.Format(Resources.TaskSettingsForm_UpdateUploaderMenuNames_After_upload___0_,
                 string.Join(", ", TaskSettings.AfterUploadJob.GetFlags().Select(x => x.GetLocalizedDescription())));
 
-            string imageUploader = TaskSettings.ImageDestination == ImageDestination.FileUploader ?
-                TaskSettings.ImageFileDestination.GetLocalizedDescription() : TaskSettings.ImageDestination.GetLocalizedDescription();
-            tsmiImageUploaders.Text = string.Format(Resources.TaskSettingsForm_UpdateUploaderMenuNames_Image_uploader___0_, imageUploader);
+            //string imageUploader = TaskSettings.ImageDestination == ImageDestination.FileUploader ?
+            //    TaskSettings.ImageFileDestination.GetLocalizedDescription() : TaskSettings.ImageDestination.GetLocalizedDescription();
+            //tsmiImageUploaders.Text = string.Format(Resources.TaskSettingsForm_UpdateUploaderMenuNames_Image_uploader___0_, imageUploader);
 
             string textUploader = TaskSettings.TextDestination == TextDestination.FileUploader ?
                 TaskSettings.TextFileDestination.GetLocalizedDescription() : TaskSettings.TextDestination.GetLocalizedDescription();
@@ -1400,224 +1313,6 @@ namespace ShareX
         #endregion OCR
 
         #endregion Capture
-
-        #region Upload
-
-        private void UpdateNameFormatPreviews()
-        {
-            NameParser nameParser = new NameParser(NameParserType.FileName)
-            {
-                AutoIncrementNumber = Program.Settings.NameParserAutoIncrementNumber,
-                ImageWidth = 1920,
-                ImageHeight = 1080,
-                MaxNameLength = TaskSettings.AdvancedSettings.NamePatternMaxLength,
-                MaxTitleLength = TaskSettings.AdvancedSettings.NamePatternMaxTitleLength,
-                CustomTimeZone = TaskSettings.UploadSettings.UseCustomTimeZone ? TaskSettings.UploadSettings.CustomTimeZone : null,
-                IsPreviewMode = true
-            };
-
-            lblNameFormatPatternPreview.Text = Resources.TaskSettingsForm_txtNameFormatPatternActiveWindow_TextChanged_Preview_ + " " +
-                nameParser.Parse(TaskSettings.UploadSettings.NameFormatPattern);
-
-            nameParser.WindowText = Text;
-            nameParser.ProcessName = "ShareX";
-
-            lblNameFormatPatternPreviewActiveWindow.Text = Resources.TaskSettingsForm_txtNameFormatPatternActiveWindow_TextChanged_Preview_ + " " +
-                nameParser.Parse(TaskSettings.UploadSettings.NameFormatPatternActiveWindow);
-        }
-
-        private void cbUseDefaultUploadSettings_CheckedChanged(object sender, EventArgs e)
-        {
-            TaskSettings.UseDefaultUploadSettings = !cbOverrideUploadSettings.Checked;
-            UpdateDefaultSettingVisibility();
-        }
-
-        private void txtNameFormatPattern_TextChanged(object sender, EventArgs e)
-        {
-            TaskSettings.UploadSettings.NameFormatPattern = txtNameFormatPattern.Text;
-            UpdateNameFormatPreviews();
-        }
-
-        private void txtNameFormatPatternActiveWindow_TextChanged(object sender, EventArgs e)
-        {
-            TaskSettings.UploadSettings.NameFormatPatternActiveWindow = txtNameFormatPatternActiveWindow.Text;
-            UpdateNameFormatPreviews();
-        }
-
-        private void cbFileUploadUseNamePattern_CheckedChanged(object sender, EventArgs e)
-        {
-            TaskSettings.UploadSettings.FileUploadUseNamePattern = cbFileUploadUseNamePattern.Checked;
-        }
-
-        private void btnAutoIncrementNumber_Click(object sender, EventArgs e)
-        {
-            Program.Settings.NameParserAutoIncrementNumber = (int)nudAutoIncrementNumber.Value;
-            UpdateNameFormatPreviews();
-        }
-
-        private void cbNameFormatCustomTimeZone_CheckedChanged(object sender, EventArgs e)
-        {
-            TaskSettings.UploadSettings.UseCustomTimeZone = cbNameFormatCustomTimeZone.Checked;
-            cbNameFormatTimeZone.Enabled = TaskSettings.UploadSettings.UseCustomTimeZone;
-            UpdateNameFormatPreviews();
-        }
-
-        private void cbNameFormatTimeZone_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (cbNameFormatTimeZone.SelectedItem is TimeZoneInfo timeZoneInfo)
-            {
-                TaskSettings.UploadSettings.CustomTimeZone = timeZoneInfo;
-            }
-
-            UpdateNameFormatPreviews();
-        }
-
-        private void cbFileUploadReplaceProblematicCharacters_CheckedChanged(object sender, EventArgs e)
-        {
-            TaskSettings.UploadSettings.FileUploadReplaceProblematicCharacters = cbFileUploadReplaceProblematicCharacters.Checked;
-        }
-
-        private void cbURLRegexReplace_CheckedChanged(object sender, EventArgs e)
-        {
-            TaskSettings.UploadSettings.URLRegexReplace = cbURLRegexReplace.Checked;
-            lblURLRegexReplacePattern.Enabled = txtURLRegexReplacePattern.Enabled =
-                lblURLRegexReplaceReplacement.Enabled = txtURLRegexReplaceReplacement.Enabled = TaskSettings.UploadSettings.URLRegexReplace;
-        }
-
-        private void txtURLRegexReplacePattern_TextChanged(object sender, EventArgs e)
-        {
-            TaskSettings.UploadSettings.URLRegexReplacePattern = txtURLRegexReplacePattern.Text;
-        }
-
-        private void txtURLRegexReplaceReplacement_TextChanged(object sender, EventArgs e)
-        {
-            TaskSettings.UploadSettings.URLRegexReplaceReplacement = txtURLRegexReplaceReplacement.Text;
-        }
-
-        private void cbClipboardUploadContents_CheckedChanged(object sender, EventArgs e)
-        {
-            TaskSettings.UploadSettings.ClipboardUploadURLContents = cbClipboardUploadURLContents.Checked;
-        }
-
-        private void cbClipboardUploadAutoDetectURL_CheckedChanged(object sender, EventArgs e)
-        {
-            TaskSettings.UploadSettings.ClipboardUploadShortenURL = cbClipboardUploadShortenURL.Checked;
-        }
-
-        private void cbClipboardUploadShareURL_CheckedChanged(object sender, EventArgs e)
-        {
-            TaskSettings.UploadSettings.ClipboardUploadShareURL = cbClipboardUploadShareURL.Checked;
-        }
-
-        private void cbClipboardUploadAutoIndexFolder_CheckedChanged(object sender, EventArgs e)
-        {
-            TaskSettings.UploadSettings.ClipboardUploadAutoIndexFolder = cbClipboardUploadAutoIndexFolder.Checked;
-        }
-
-        private UploaderFilter GetUploaderFilterFromFields()
-        {
-            if (cbUploaderFiltersDestination.SelectedItem is IGenericUploaderService service)
-            {
-                UploaderFilter filter = new UploaderFilter();
-                filter.Uploader = service.ServiceIdentifier;
-                filter.SetExtensions(txtUploaderFiltersExtensions.Text);
-                return filter;
-            }
-
-            return null;
-        }
-
-        private void AddUploaderFilterToList(UploaderFilter filter)
-        {
-            if (filter != null)
-            {
-                ListViewItem lvi = new ListViewItem(filter.Uploader);
-                lvi.SubItems.Add(filter.GetExtensions());
-                lvi.Tag = filter;
-
-                lvUploaderFiltersList.Items.Add(lvi);
-            }
-        }
-
-        private void UpdateUploaderFilterFields(UploaderFilter filter)
-        {
-            if (filter == null)
-            {
-                filter = new UploaderFilter();
-            }
-
-            for (int i = 0; i < cbUploaderFiltersDestination.Items.Count; i++)
-            {
-                if (cbUploaderFiltersDestination.Items[i] is IGenericUploaderService service &&
-                    service.ServiceIdentifier.Equals(filter.Uploader, StringComparison.OrdinalIgnoreCase))
-                {
-                    cbUploaderFiltersDestination.SelectedIndex = i;
-                    break;
-                }
-            }
-
-            txtUploaderFiltersExtensions.Text = filter.GetExtensions();
-        }
-
-        private void btnUploaderFiltersAdd_Click(object sender, EventArgs e)
-        {
-            UploaderFilter filter = GetUploaderFilterFromFields();
-
-            if (filter != null)
-            {
-                TaskSettings.UploadSettings.UploaderFilters.Add(filter);
-
-                AddUploaderFilterToList(filter);
-
-                lvUploaderFiltersList.SelectedIndex = lvUploaderFiltersList.Items.Count - 1;
-            }
-        }
-
-        private void btnUploaderFiltersUpdate_Click(object sender, EventArgs e)
-        {
-            int index = lvUploaderFiltersList.SelectedIndex;
-
-            if (index > -1)
-            {
-                UploaderFilter filter = GetUploaderFilterFromFields();
-
-                if (filter != null)
-                {
-                    TaskSettings.UploadSettings.UploaderFilters[index] = filter;
-
-                    ListViewItem lvi = lvUploaderFiltersList.Items[index];
-                    lvi.Text = filter.Uploader;
-                    lvi.SubItems[1].Text = filter.GetExtensions();
-                    lvi.Tag = filter;
-                }
-            }
-        }
-
-        private void btnUploaderFiltersRemove_Click(object sender, EventArgs e)
-        {
-            int index = lvUploaderFiltersList.SelectedIndex;
-
-            if (index > -1)
-            {
-                TaskSettings.UploadSettings.UploaderFilters.RemoveAt(index);
-
-                lvUploaderFiltersList.Items.RemoveAt(index);
-            }
-        }
-
-        private void lvUploaderFiltersList_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            UploaderFilter filter = null;
-
-            if (lvUploaderFiltersList.SelectedItems.Count > 0)
-            {
-                filter = lvUploaderFiltersList.SelectedItems[0].Tag as UploaderFilter;
-            }
-
-            UpdateUploaderFilterFields(filter);
-        }
-
-        #endregion Upload
 
         #region Actions
 
