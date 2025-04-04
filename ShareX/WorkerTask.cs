@@ -43,11 +43,10 @@ namespace ShareX
     {
         public delegate void TaskEventHandler(WorkerTask task);
         public delegate void TaskImageEventHandler(WorkerTask task, Bitmap image);
-        public delegate void UploaderServiceEventHandler(IUploaderService uploaderService);
-
+   
         public event TaskEventHandler StatusChanged, UploadProgressChanged, TaskCompleted;
         public event TaskImageEventHandler ImageReady;
-        public event UploaderServiceEventHandler UploadersConfigWindowRequested;
+
 
         public TaskInfo Info { get; private set; }
         public TaskStatus Status { get; private set; }
@@ -753,116 +752,44 @@ namespace ShareX
             }
         }
 
-        public UploadResult UploadData(IGenericUploaderService service, Stream stream, string fileName)
+        public UploadResult UploadData()
         {
-            if (!service.CheckConfig(Program.UploadersConfig))
-            {
-                return GetInvalidConfigResult(service);
-            }
-
-            uploader = service.CreateUploader(Program.UploadersConfig, taskReferenceHelper);
-
-            if (uploader != null)
-            {
-                uploader.Errors.DefaultTitle = service.ServiceName + " " + "error";
-                uploader.BufferSize = (int)Math.Pow(2, Program.Settings.BufferSizePower) * 1024;
-                uploader.ProgressChanged += uploader_ProgressChanged;
-
-                if (Info.TaskSettings.AfterUploadJob.HasFlag(AfterUploadTasks.CopyURLToClipboard) && Info.TaskSettings.AdvancedSettings.EarlyCopyURL)
-                {
-                    uploader.EarlyURLCopyRequested += url =>
-                    {
-                        ClipboardHelpers.CopyText(url);
-                        EarlyURLCopied = true;
-                    };
-                }
-
-                fileName = URLHelpers.RemoveBidiControlCharacters(fileName);
-
-                if (Info.TaskSettings.UploadSettings.FileUploadReplaceProblematicCharacters)
-                {
-                    fileName = URLHelpers.ReplaceReservedCharacters(fileName, "_");
-                }
-
-                Info.UploadDuration = Stopwatch.StartNew();
-
-                UploadResult result = uploader.Upload(stream, fileName);
-
-                Info.UploadDuration.Stop();
-
-                return result;
-            }
-
+           
             return null;
         }
 
         public UploadResult UploadText(Stream stream, string fileName)
         {
-            TextUploaderService service = UploaderFactory.TextUploaderServices[Info.TaskSettings.TextDestination];
+            
 
-            return UploadData(service, stream, fileName);
+            return null;
         }
 
-        public UploadResult UploadFile(Stream stream, string fileName)
+        public UploadResult UploadFile()
         {
-            FileUploaderService service = UploaderFactory.FileUploaderServices[Info.TaskSettings.GetFileDestinationByDataType(Info.DataType)];
+            
 
-            return UploadData(service, stream, fileName);
+            return null;
         }
 
         public UploadResult ShortenURL(string url)
         {
-            URLShortenerService service = UploaderFactory.URLShortenerServices[Info.TaskSettings.URLShortenerDestination];
-
-            if (!service.CheckConfig(Program.UploadersConfig))
-            {
-                return GetInvalidConfigResult(service);
-            }
-
-            URLShortener urlShortener = service.CreateShortener(Program.UploadersConfig, taskReferenceHelper);
-
-            if (urlShortener != null)
-            {
-                return urlShortener.ShortenURL(url);
-            }
+            
 
             return null;
         }
 
         public UploadResult ShareURL(string url)
         {
-            if (!string.IsNullOrEmpty(url))
-            {
-                URLSharingService service = UploaderFactory.URLSharingServices[Info.TaskSettings.URLSharingServiceDestination];
-
-                if (!service.CheckConfig(Program.UploadersConfig))
-                {
-                    return GetInvalidConfigResult(service);
-                }
-
-                URLSharer urlSharer = service.CreateSharer(Program.UploadersConfig, taskReferenceHelper);
-
-                if (urlSharer != null)
-                {
-                    return urlSharer.ShareURL(url);
-                }
-            }
+            
 
             return null;
         }
 
-        private UploadResult GetInvalidConfigResult(IUploaderService uploaderService)
+        private UploadResult GetInvalidConfigResult()
         {
-            UploadResult ur = new UploadResult();
-
-            string message = string.Format(Resources.WorkerTask_GetInvalidConfigResult__0__configuration_is_invalid_or_missing__Please_check__Destination_settings__window_to_configure_it_,
-                uploaderService.ServiceName);
-            DebugHelper.WriteLine(message);
-            ur.Errors.Add(message);
-
-            OnUploadersConfigWindowRequested(uploaderService);
-
-            return ur;
+            
+            return null;
         }
 
         private bool DownloadFromURL(bool upload)
@@ -1014,14 +941,6 @@ namespace ShareX
             TaskCompleted?.Invoke(this);
 
             Dispose();
-        }
-
-        private void OnUploadersConfigWindowRequested(IUploaderService uploaderService)
-        {
-            if (UploadersConfigWindowRequested != null)
-            {
-                threadWorker.InvokeAsync(() => UploadersConfigWindowRequested(uploaderService));
-            }
         }
 
         public void Dispose()

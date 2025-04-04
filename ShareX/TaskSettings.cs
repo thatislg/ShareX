@@ -443,11 +443,6 @@ namespace ShareX
 
         #endregion Upload / Clipboard upload
 
-        #region Upload / Uploader filters
-
-        public List<UploaderFilter> UploaderFilters = new List<UploaderFilter>();
-
-        #endregion Upload / Uploader filters
     }
 
     public class TaskSettingsTools

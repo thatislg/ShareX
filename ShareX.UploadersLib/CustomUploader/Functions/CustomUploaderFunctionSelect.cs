@@ -23,7 +23,6 @@
 
 #endregion License Information (GPL v3)
 
-using System.Linq;
 
 namespace ShareX.UploadersLib
 {
@@ -36,17 +35,6 @@ namespace ShareX.UploadersLib
 
         public override string Call(ShareXCustomUploaderSyntaxParser parser, string[] parameters)
         {
-            string[] values = parameters.Where(x => !string.IsNullOrEmpty(x)).ToArray();
-
-            if (values.Length > 0)
-            {
-                using (ParserSelectForm form = new ParserSelectForm(values))
-                {
-                    form.ShowDialog();
-                    return form.SelectedText;
-                }
-            }
-
             return null;
         }
     }

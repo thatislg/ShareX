@@ -1029,27 +1029,7 @@ namespace ShareX
 
         private void RunPuushTasks()
         {
-            if (Program.PuushMode && Program.Settings.IsFirstTimeRun)
-            {
-                using (PuushLoginForm puushLoginForm = new PuushLoginForm())
-                {
-                    if (puushLoginForm.ShowDialog() == DialogResult.OK)
-                    {
-                        Program.DefaultTaskSettings.ImageDestination = ImageDestination.FileUploader;
-                        Program.DefaultTaskSettings.ImageFileDestination = FileDestination.Puush;
-                        Program.DefaultTaskSettings.TextDestination = TextDestination.FileUploader;
-                        Program.DefaultTaskSettings.TextFileDestination = FileDestination.Puush;
-                        Program.DefaultTaskSettings.FileDestination = FileDestination.Puush;
-
-                        SettingManager.WaitUploadersConfig();
-
-                        if (Program.UploadersConfig != null)
-                        {
-                            Program.UploadersConfig.PuushAPIKey = puushLoginForm.APIKey;
-                        }
-                    }
-                }
-            }
+           
         }
 
         private void SetScreenshotDelay(decimal delay)

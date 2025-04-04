@@ -426,10 +426,6 @@ namespace ShareX
 
         public void ShowResponse()
         {
-            if (IsItemSelected && SelectedItem.Info.Result != null)
-            {
-                ResponseForm.ShowInstance(SelectedItem.Info.Result);
-            }
         }
 
         #endregion Other

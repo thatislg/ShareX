@@ -102,31 +102,6 @@ namespace ShareX
                 AddEnumItems<URLSharingServices>(x => TaskSettings.URLSharingServiceDestination = x, tsmiURLSharingServices);
                 SetEnumChecked(TaskSettings.URLSharingServiceDestination, tsmiURLSharingServices);
 
-                if (Program.UploadersConfig != null)
-                {
-                    cbOverrideFTPAccount.Enabled = cbFTPAccounts.Enabled = Program.UploadersConfig.FTPAccountList.Count > 0;
-
-                    if (Program.UploadersConfig.FTPAccountList.Count > 0)
-                    {
-                        cbOverrideFTPAccount.Checked = TaskSettings.OverrideFTP;
-                        cbFTPAccounts.Enabled = TaskSettings.OverrideFTP;
-                        cbFTPAccounts.Items.Clear();
-                        cbFTPAccounts.Items.AddRange(Program.UploadersConfig.FTPAccountList.ToArray());
-                        cbFTPAccounts.SelectedIndex = TaskSettings.FTPIndex.BetweenOrDefault(0, Program.UploadersConfig.FTPAccountList.Count - 1);
-                    }
-
-                    cbOverrideCustomUploader.Enabled = cbCustomUploaders.Enabled = Program.UploadersConfig.CustomUploadersList.Count > 0;
-
-                    if (Program.UploadersConfig.CustomUploadersList.Count > 0)
-                    {
-                        cbOverrideCustomUploader.Checked = TaskSettings.OverrideCustomUploader;
-                        cbCustomUploaders.Enabled = TaskSettings.OverrideCustomUploader;
-                        cbCustomUploaders.Items.Clear();
-                        cbCustomUploaders.Items.AddRange(Program.UploadersConfig.CustomUploadersList.ToArray());
-                        cbCustomUploaders.SelectedIndex = TaskSettings.CustomUploaderIndex.BetweenOrDefault(0, Program.UploadersConfig.CustomUploadersList.Count - 1);
-                    }
-                }
-
                 cbOverrideScreenshotsFolder.Checked = TaskSettings.OverrideScreenshotsFolder;
                 CodeMenu screenshotsFolderMenu = CodeMenu.Create<CodeMenuEntryFilename>(txtScreenshotsFolder, CodeMenuEntryFilename.t, CodeMenuEntryFilename.pn,
                     CodeMenuEntryFilename.i, CodeMenuEntryFilename.width, CodeMenuEntryFilename.height, CodeMenuEntryFilename.n);
