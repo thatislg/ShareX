@@ -3453,58 +3453,6 @@ namespace ShareX.UploadersLib
             this.txtPlikLogin.Name = "txtPlikLogin";
             this.txtPlikLogin.TextChanged += new System.EventHandler(this.txtPlikLogin_TextChanged);
             // 
-            // tpYouTube
-            // 
-            this.tpYouTube.Controls.Add(this.oauth2YouTube);
-            this.tpYouTube.Controls.Add(this.llYouTubePermissionsLink);
-            this.tpYouTube.Controls.Add(this.lblYouTubePermissionsTip);
-            this.tpYouTube.Controls.Add(this.cbYouTubeShowDialog);
-            this.tpYouTube.Controls.Add(this.cbYouTubeUseShortenedLink);
-            this.tpYouTube.Controls.Add(this.cbYouTubePrivacyType);
-            this.tpYouTube.Controls.Add(this.lblYouTubePrivacyType);
-            resources.ApplyResources(this.tpYouTube, "tpYouTube");
-            this.tpYouTube.Name = "tpYouTube";
-            this.tpYouTube.UseVisualStyleBackColor = true;
-            // 
-            // llYouTubePermissionsLink
-            // 
-            resources.ApplyResources(this.llYouTubePermissionsLink, "llYouTubePermissionsLink");
-            this.llYouTubePermissionsLink.Name = "llYouTubePermissionsLink";
-            this.llYouTubePermissionsLink.TabStop = true;
-            this.llYouTubePermissionsLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llYouTubePermissionsLink_LinkClicked);
-            // 
-            // lblYouTubePermissionsTip
-            // 
-            resources.ApplyResources(this.lblYouTubePermissionsTip, "lblYouTubePermissionsTip");
-            this.lblYouTubePermissionsTip.Name = "lblYouTubePermissionsTip";
-            // 
-            // cbYouTubeShowDialog
-            // 
-            resources.ApplyResources(this.cbYouTubeShowDialog, "cbYouTubeShowDialog");
-            this.cbYouTubeShowDialog.Name = "cbYouTubeShowDialog";
-            this.cbYouTubeShowDialog.UseVisualStyleBackColor = true;
-            this.cbYouTubeShowDialog.CheckedChanged += new System.EventHandler(this.cbYouTubeShowDialog_CheckedChanged);
-            // 
-            // cbYouTubeUseShortenedLink
-            // 
-            resources.ApplyResources(this.cbYouTubeUseShortenedLink, "cbYouTubeUseShortenedLink");
-            this.cbYouTubeUseShortenedLink.Name = "cbYouTubeUseShortenedLink";
-            this.cbYouTubeUseShortenedLink.UseVisualStyleBackColor = true;
-            this.cbYouTubeUseShortenedLink.CheckedChanged += new System.EventHandler(this.cbYouTubeUseShortenedLink_CheckedChanged);
-            // 
-            // cbYouTubePrivacyType
-            // 
-            this.cbYouTubePrivacyType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbYouTubePrivacyType.FormattingEnabled = true;
-            resources.ApplyResources(this.cbYouTubePrivacyType, "cbYouTubePrivacyType");
-            this.cbYouTubePrivacyType.Name = "cbYouTubePrivacyType";
-            this.cbYouTubePrivacyType.SelectedIndexChanged += new System.EventHandler(this.cbYouTubePrivacyType_SelectedIndexChanged);
-            // 
-            // lblYouTubePrivacyType
-            // 
-            resources.ApplyResources(this.lblYouTubePrivacyType, "lblYouTubePrivacyType");
-            this.lblYouTubePrivacyType.Name = "lblYouTubePrivacyType";
-            // 
             // tpSharedFolder
             // 
             this.tpSharedFolder.BackColor = System.Drawing.SystemColors.Window;
@@ -3859,14 +3807,6 @@ namespace ShareX.UploadersLib
             this.oAuthJira.CompleteButtonClicked += new ShareX.UploadersLib.OAuthControl.CompleteButtonClickedEventHandler(this.oAuthJira_CompleteButtonClicked);
             this.oAuthJira.ClearButtonClicked += new ShareX.UploadersLib.OAuthControl.ClearButtonclickedEventHandler(this.oAuthJira_ClearButtonClicked);
             this.oAuthJira.RefreshButtonClicked += new ShareX.UploadersLib.OAuthControl.RefreshButtonClickedEventHandler(this.oAuthJira_RefreshButtonClicked);
-            // 
-            // oauth2YouTube
-            // 
-            resources.ApplyResources(this.oauth2YouTube, "oauth2YouTube");
-            this.oauth2YouTube.Name = "oauth2YouTube";
-            this.oauth2YouTube.ConnectButtonClicked += new System.Action(this.oauth2YouTube_ConnectButtonClicked);
-            this.oauth2YouTube.DisconnectButtonClicked += new System.Action(this.oauth2YouTube_DisconnectButtonClicked);
-            // 
             // actRapidShareAccountType
             // 
             resources.ApplyResources(this.actRapidShareAccountType, "actRapidShareAccountType");

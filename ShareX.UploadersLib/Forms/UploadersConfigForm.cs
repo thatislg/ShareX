@@ -2338,53 +2338,6 @@ However, there is a workaround. You can navigate to the Google Drive website in 
 
         #endregion Plik
 
-        #region YouTube
-
-        private void oauth2YouTube_ConnectButtonClicked()
-        {
-            OAuth2Info oauth = new OAuth2Info(APIKeys.GoogleClientID, APIKeys.GoogleClientSecret);
-            IOAuth2Loopback oauthLoopback = new YouTube(oauth).OAuth2;
-
-            using (OAuthListenerForm form = new OAuthListenerForm(oauthLoopback))
-            {
-                form.ShowDialog();
-                Config.YouTubeOAuth2Info = form.OAuth2Info;
-                Config.YouTubeUserInfo = form.UserInfo;
-            }
-
-            oauth2YouTube.UpdateStatus(Config.YouTubeOAuth2Info, Config.YouTubeUserInfo);
-
-            this.ForceActivate();
-        }
-
-        private void oauth2YouTube_DisconnectButtonClicked()
-        {
-            Config.YouTubeOAuth2Info = null;
-            Config.YouTubeUserInfo = null;
-        }
-
-        private void llYouTubePermissionsLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            URLHelpers.OpenURL("https://myaccount.google.com/permissions");
-        }
-
-        private void cbYouTubePrivacyType_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            Config.YouTubePrivacyType = (YouTubeVideoPrivacy)cbYouTubePrivacyType.SelectedIndex;
-        }
-
-        private void cbYouTubeUseShortenedLink_CheckedChanged(object sender, EventArgs e)
-        {
-            Config.YouTubeUseShortenedLink = cbYouTubeUseShortenedLink.Checked;
-        }
-
-        private void cbYouTubeShowDialog_CheckedChanged(object sender, EventArgs e)
-        {
-            Config.YouTubeShowDialog = cbYouTubeShowDialog.Checked;
-        }
-
-        #endregion YouTube
-
         #region Google Cloud Storage
 
         private void oauth2GoogleCloudStorage_ConnectButtonClicked()
