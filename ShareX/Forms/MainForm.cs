@@ -558,18 +558,6 @@ namespace ShareX
             }
         }
 
-        private void EnableDisableToolStripMenuItems<T>(params ToolStripDropDownItem[] parents)
-        {
-            foreach (ToolStripDropDownItem parent in parents)
-            {
-                for (int i = 0; i < parent.DropDownItems.Count; i++)
-                {
-                    parent.DropDownItems[i].ForeColor = UploadersConfigValidator.Validate<T>(i, Program.UploadersConfig) ?
-                        SystemColors.ControlText : Color.FromArgb(200, 0, 0);
-                }
-            }
-        }
-
         private void UpdateInfoManager()
         {
             cmsTaskInfo.SuspendLayout();

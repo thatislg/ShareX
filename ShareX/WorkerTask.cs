@@ -796,13 +796,6 @@ namespace ShareX
             return null;
         }
 
-        public UploadResult UploadImage(Stream stream, string fileName)
-        {
-            ImageUploaderService service = UploaderFactory.ImageUploaderServices[Info.TaskSettings.ImageDestination];
-
-            return UploadData(service, stream, fileName);
-        }
-
         public UploadResult UploadText(Stream stream, string fileName)
         {
             TextUploaderService service = UploaderFactory.TextUploaderServices[Info.TaskSettings.TextDestination];

@@ -50,8 +50,6 @@ namespace ShareX
             lvAfterCaptureTasks.SmallImageList = imageList;
             lvAfterUploadTasks.SmallImageList = imageList;
 
-            ucBeforeUpload.InitCapture(TaskSettings);
-
             AddAfterCaptureItems(TaskSettings.AfterCaptureJob);
             AddAfterUploadItems(TaskSettings.AfterUploadJob);
         }

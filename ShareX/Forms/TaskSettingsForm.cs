@@ -101,7 +101,6 @@ namespace ShareX
                 SetEnumChecked(TaskSettings.URLShortenerDestination, tsmiURLShorteners);
                 AddEnumItems<URLSharingServices>(x => TaskSettings.URLSharingServiceDestination = x, tsmiURLSharingServices);
                 SetEnumChecked(TaskSettings.URLSharingServiceDestination, tsmiURLSharingServices);
-                UpdateDestinationStates();
 
                 if (Program.UploadersConfig != null)
                 {
@@ -452,19 +451,6 @@ namespace ShareX
 
         #region Task
 
-        private void UpdateDestinationStates()
-        {
-            if (Program.UploadersConfig != null)
-            {
-                
-                
-                EnableDisableToolStripMenuItems<TextDestination>(tsmiTextUploaders);
-                EnableDisableToolStripMenuItems<FileDestination>(tsmiTextFileUploaders);
-                EnableDisableToolStripMenuItems<FileDestination>(tsmiFileUploaders);
-                EnableDisableToolStripMenuItems<UrlShortenerType>(tsmiURLShorteners);
-                EnableDisableToolStripMenuItems<URLSharingServices>(tsmiURLSharingServices);
-            }
-        }
 
         private void AddEnumItemsContextMenu<T>(Action<T> selectedEnum, params ToolStripDropDown[] parents) where T : Enum
         {
@@ -623,16 +609,6 @@ namespace ShareX
             }
         }
 
-        private void EnableDisableToolStripMenuItems<T>(params ToolStripDropDownItem[] parents)
-        {
-            foreach (ToolStripDropDownItem parent in parents)
-            {
-                for (int i = 0; i < parent.DropDownItems.Count; i++)
-                {
-                    parent.DropDownItems[i].Enabled = UploadersConfigValidator.Validate<T>(i, Program.UploadersConfig);
-                }
-            }
-        }
 
         private void UpdateTaskTabMenuNames()
         {
@@ -644,10 +620,6 @@ namespace ShareX
 
             btnAfterUpload.Text = string.Format(Resources.TaskSettingsForm_UpdateUploaderMenuNames_After_upload___0_,
                 string.Join(", ", TaskSettings.AfterUploadJob.GetFlags().Select(x => x.GetLocalizedDescription())));
-
-            //string imageUploader = TaskSettings.ImageDestination == ImageDestination.FileUploader ?
-            //    TaskSettings.ImageFileDestination.GetLocalizedDescription() : TaskSettings.ImageDestination.GetLocalizedDescription();
-            //tsmiImageUploaders.Text = string.Format(Resources.TaskSettingsForm_UpdateUploaderMenuNames_Image_uploader___0_, imageUploader);
 
             string textUploader = TaskSettings.TextDestination == TextDestination.FileUploader ?
                 TaskSettings.TextFileDestination.GetLocalizedDescription() : TaskSettings.TextDestination.GetLocalizedDescription();
