@@ -715,75 +715,75 @@ namespace ShareX.UploadersLib
             // 
             // tpTwitter
             // 
-            this.tpTwitter.BackColor = System.Drawing.SystemColors.Window;
-            this.tpTwitter.Controls.Add(this.btnTwitterNameUpdate);
-            this.tpTwitter.Controls.Add(this.lbTwitterAccounts);
-            this.tpTwitter.Controls.Add(this.lblTwitterDefaultMessage);
-            this.tpTwitter.Controls.Add(this.txtTwitterDefaultMessage);
-            this.tpTwitter.Controls.Add(this.cbTwitterSkipMessageBox);
-            this.tpTwitter.Controls.Add(this.oauthTwitter);
-            this.tpTwitter.Controls.Add(this.txtTwitterDescription);
-            this.tpTwitter.Controls.Add(this.lblTwitterDescription);
-            this.tpTwitter.Controls.Add(this.btnTwitterRemove);
-            this.tpTwitter.Controls.Add(this.btnTwitterAdd);
-            resources.ApplyResources(this.tpTwitter, "tpTwitter");
-            this.tpTwitter.Name = "tpTwitter";
-            // 
-            // btnTwitterNameUpdate
-            // 
-            resources.ApplyResources(this.btnTwitterNameUpdate, "btnTwitterNameUpdate");
-            this.btnTwitterNameUpdate.Name = "btnTwitterNameUpdate";
-            this.btnTwitterNameUpdate.UseVisualStyleBackColor = true;
-            this.btnTwitterNameUpdate.Click += new System.EventHandler(this.btnTwitterNameUpdate_Click);
-            // 
-            // lbTwitterAccounts
-            // 
-            this.lbTwitterAccounts.FormattingEnabled = true;
-            resources.ApplyResources(this.lbTwitterAccounts, "lbTwitterAccounts");
-            this.lbTwitterAccounts.Name = "lbTwitterAccounts";
-            this.lbTwitterAccounts.SelectedIndexChanged += new System.EventHandler(this.lbTwitterAccounts_SelectedIndexChanged);
-            // 
-            // lblTwitterDefaultMessage
-            // 
-            resources.ApplyResources(this.lblTwitterDefaultMessage, "lblTwitterDefaultMessage");
-            this.lblTwitterDefaultMessage.Name = "lblTwitterDefaultMessage";
-            // 
-            // txtTwitterDefaultMessage
-            // 
-            resources.ApplyResources(this.txtTwitterDefaultMessage, "txtTwitterDefaultMessage");
-            this.txtTwitterDefaultMessage.Name = "txtTwitterDefaultMessage";
-            this.txtTwitterDefaultMessage.TextChanged += new System.EventHandler(this.txtTwitterDefaultMessage_TextChanged);
-            // 
-            // cbTwitterSkipMessageBox
-            // 
-            resources.ApplyResources(this.cbTwitterSkipMessageBox, "cbTwitterSkipMessageBox");
-            this.cbTwitterSkipMessageBox.Name = "cbTwitterSkipMessageBox";
-            this.cbTwitterSkipMessageBox.UseVisualStyleBackColor = true;
-            this.cbTwitterSkipMessageBox.CheckedChanged += new System.EventHandler(this.cbTwitterSkipMessageBox_CheckedChanged);
-            // 
-            // txtTwitterDescription
-            // 
-            resources.ApplyResources(this.txtTwitterDescription, "txtTwitterDescription");
-            this.txtTwitterDescription.Name = "txtTwitterDescription";
-            // 
-            // lblTwitterDescription
-            // 
-            resources.ApplyResources(this.lblTwitterDescription, "lblTwitterDescription");
-            this.lblTwitterDescription.Name = "lblTwitterDescription";
-            // 
-            // btnTwitterRemove
-            // 
-            resources.ApplyResources(this.btnTwitterRemove, "btnTwitterRemove");
-            this.btnTwitterRemove.Name = "btnTwitterRemove";
-            this.btnTwitterRemove.UseVisualStyleBackColor = true;
-            this.btnTwitterRemove.Click += new System.EventHandler(this.btnTwitterRemove_Click);
-            // 
-            // btnTwitterAdd
-            // 
-            resources.ApplyResources(this.btnTwitterAdd, "btnTwitterAdd");
-            this.btnTwitterAdd.Name = "btnTwitterAdd";
-            this.btnTwitterAdd.UseVisualStyleBackColor = true;
-            this.btnTwitterAdd.Click += new System.EventHandler(this.btnTwitterAdd_Click);
+            //this.tpTwitter.BackColor = System.Drawing.SystemColors.Window;
+            //this.tpTwitter.Controls.Add(this.btnTwitterNameUpdate);
+            //this.tpTwitter.Controls.Add(this.lbTwitterAccounts);
+            //this.tpTwitter.Controls.Add(this.lblTwitterDefaultMessage);
+            //this.tpTwitter.Controls.Add(this.txtTwitterDefaultMessage);
+            //this.tpTwitter.Controls.Add(this.cbTwitterSkipMessageBox);
+            //this.tpTwitter.Controls.Add(this.oauthTwitter);
+            //this.tpTwitter.Controls.Add(this.txtTwitterDescription);
+            //this.tpTwitter.Controls.Add(this.lblTwitterDescription);
+            //this.tpTwitter.Controls.Add(this.btnTwitterRemove);
+            //this.tpTwitter.Controls.Add(this.btnTwitterAdd);
+            //resources.ApplyResources(this.tpTwitter, "tpTwitter");
+            //this.tpTwitter.Name = "tpTwitter";
+            //// 
+            //// btnTwitterNameUpdate
+            //// 
+            //resources.ApplyResources(this.btnTwitterNameUpdate, "btnTwitterNameUpdate");
+            //this.btnTwitterNameUpdate.Name = "btnTwitterNameUpdate";
+            //this.btnTwitterNameUpdate.UseVisualStyleBackColor = true;
+            //this.btnTwitterNameUpdate.Click += new System.EventHandler(this.btnTwitterNameUpdate_Click);
+            //// 
+            //// lbTwitterAccounts
+            //// 
+            //this.lbTwitterAccounts.FormattingEnabled = true;
+            //resources.ApplyResources(this.lbTwitterAccounts, "lbTwitterAccounts");
+            //this.lbTwitterAccounts.Name = "lbTwitterAccounts";
+            //this.lbTwitterAccounts.SelectedIndexChanged += new System.EventHandler(this.lbTwitterAccounts_SelectedIndexChanged);
+            //// 
+            //// lblTwitterDefaultMessage
+            //// 
+            //resources.ApplyResources(this.lblTwitterDefaultMessage, "lblTwitterDefaultMessage");
+            //this.lblTwitterDefaultMessage.Name = "lblTwitterDefaultMessage";
+            //// 
+            //// txtTwitterDefaultMessage
+            //// 
+            //resources.ApplyResources(this.txtTwitterDefaultMessage, "txtTwitterDefaultMessage");
+            //this.txtTwitterDefaultMessage.Name = "txtTwitterDefaultMessage";
+            //this.txtTwitterDefaultMessage.TextChanged += new System.EventHandler(this.txtTwitterDefaultMessage_TextChanged);
+            //// 
+            //// cbTwitterSkipMessageBox
+            //// 
+            //resources.ApplyResources(this.cbTwitterSkipMessageBox, "cbTwitterSkipMessageBox");
+            //this.cbTwitterSkipMessageBox.Name = "cbTwitterSkipMessageBox";
+            //this.cbTwitterSkipMessageBox.UseVisualStyleBackColor = true;
+            //this.cbTwitterSkipMessageBox.CheckedChanged += new System.EventHandler(this.cbTwitterSkipMessageBox_CheckedChanged);
+            //// 
+            //// txtTwitterDescription
+            //// 
+            //resources.ApplyResources(this.txtTwitterDescription, "txtTwitterDescription");
+            //this.txtTwitterDescription.Name = "txtTwitterDescription";
+            //// 
+            //// lblTwitterDescription
+            //// 
+            //resources.ApplyResources(this.lblTwitterDescription, "lblTwitterDescription");
+            //this.lblTwitterDescription.Name = "lblTwitterDescription";
+            //// 
+            //// btnTwitterRemove
+            //// 
+            //resources.ApplyResources(this.btnTwitterRemove, "btnTwitterRemove");
+            //this.btnTwitterRemove.Name = "btnTwitterRemove";
+            //this.btnTwitterRemove.UseVisualStyleBackColor = true;
+            //this.btnTwitterRemove.Click += new System.EventHandler(this.btnTwitterRemove_Click);
+            //// 
+            //// btnTwitterAdd
+            //// 
+            //resources.ApplyResources(this.btnTwitterAdd, "btnTwitterAdd");
+            //this.btnTwitterAdd.Name = "btnTwitterAdd";
+            //this.btnTwitterAdd.UseVisualStyleBackColor = true;
+            //this.btnTwitterAdd.Click += new System.EventHandler(this.btnTwitterAdd_Click);
             // 
             // tpURLShorteners
             // 
@@ -3725,7 +3725,6 @@ namespace ShareX.UploadersLib
             this.tttvMain.SeparatorColor = System.Drawing.SystemColors.ControlDark;
             this.tttvMain.TreeViewFont = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.tttvMain.TreeViewSize = 230;
-           
             // 
             // oauth2Dropbox
             // 
@@ -3770,16 +3769,6 @@ namespace ShareX.UploadersLib
             this.oauth2GoogleCloudStorage.Name = "oauth2GoogleCloudStorage";
             this.oauth2GoogleCloudStorage.ConnectButtonClicked += new System.Action(this.oauth2GoogleCloudStorage_ConnectButtonClicked);
             this.oauth2GoogleCloudStorage.DisconnectButtonClicked += new System.Action(this.oauth2GoogleCloudStorage_DisconnectButtonClicked);
-            // 
-            // oauthTwitter
-            // 
-            resources.ApplyResources(this.oauthTwitter, "oauthTwitter");
-            this.oauthTwitter.IsRefreshable = false;
-            this.oauthTwitter.Name = "oauthTwitter";
-            this.oauthTwitter.UserInfo = null;
-            this.oauthTwitter.OpenButtonClicked += new ShareX.UploadersLib.OAuthControl.OpenButtonClickedEventHandler(this.oauthTwitter_OpenButtonClicked);
-            this.oauthTwitter.CompleteButtonClicked += new ShareX.UploadersLib.OAuthControl.CompleteButtonClickedEventHandler(this.oauthTwitter_CompleteButtonClicked);
-            this.oauthTwitter.ClearButtonClicked += new ShareX.UploadersLib.OAuthControl.ClearButtonclickedEventHandler(this.oauthTwitter_ClearButtonClicked);
             // 
             // oauth2Bitly
             // 

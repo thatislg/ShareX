@@ -1603,11 +1603,6 @@ namespace ShareX
             UploadManager.ClipboardUploadMainWindow();
         }
 
-        private void tsmiUploadText_Click(object sender, EventArgs e)
-        {
-            UploadManager.ShowTextUploadDialog();
-        }
-
         private void tsmiUploadURL_Click(object sender, EventArgs e)
         {
             UploadManager.UploadURL();

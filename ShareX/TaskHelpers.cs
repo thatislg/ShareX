@@ -85,9 +85,6 @@ namespace ShareX
                 case HotkeyType.ClipboardUploadWithContentViewer:
                     UploadManager.ClipboardUploadWithContentViewer(safeTaskSettings);
                     break;
-                case HotkeyType.UploadText:
-                    UploadManager.ShowTextUploadDialog(safeTaskSettings);
-                    break;
                 case HotkeyType.UploadURL:
                     UploadManager.UploadURL(safeTaskSettings);
                     break;
@@ -96,9 +93,6 @@ namespace ShareX
                     break;
                 case HotkeyType.ShortenURL:
                     UploadManager.ShowShortenURLDialog(safeTaskSettings);
-                    break;
-                case HotkeyType.TweetMessage:
-                    TweetMessage();
                     break;
                 case HotkeyType.StopUploads:
                     TaskManager.StopAllTasks();
@@ -1519,34 +1513,34 @@ namespace ShareX
             PlayNotificationSoundAsync(NotificationSound.ActionCompleted, taskSettings);
         }
 
-        public static void TweetMessage()
-        {
-            if (IsUploadAllowed())
-            {
-                if (Program.UploadersConfig != null && Program.UploadersConfig.TwitterOAuthInfoList != null)
-                {
-                    OAuthInfo twitterOAuth = Program.UploadersConfig.TwitterOAuthInfoList.ReturnIfValidIndex(Program.UploadersConfig.TwitterSelectedAccount);
+        //public static void TweetMessage()
+        //{
+        //    if (IsUploadAllowed())
+        //    {
+        //        if (Program.UploadersConfig != null && Program.UploadersConfig.TwitterOAuthInfoList != null)
+        //        {
+        //            OAuthInfo twitterOAuth = Program.UploadersConfig.TwitterOAuthInfoList.ReturnIfValidIndex(Program.UploadersConfig.TwitterSelectedAccount);
 
-                    if (twitterOAuth != null && OAuthInfo.CheckOAuth(twitterOAuth))
-                    {
-                        Task.Run(() =>
-                        {
-                            using (TwitterTweetForm twitter = new TwitterTweetForm(twitterOAuth))
-                            {
-                                if (twitter.ShowDialog() == DialogResult.OK && twitter.IsTweetSent)
-                                {
-                                    ShowNotificationTip(Resources.TaskHelpers_TweetMessage_Tweet_successfully_sent_);
-                                }
-                            }
-                        });
+        //            if (twitterOAuth != null && OAuthInfo.CheckOAuth(twitterOAuth))
+        //            {
+        //                Task.Run(() =>
+        //                {
+        //                    using (TwitterTweetForm twitter = new TwitterTweetForm(twitterOAuth))
+        //                    {
+        //                        if (twitter.ShowDialog() == DialogResult.OK && twitter.IsTweetSent)
+        //                        {
+        //                            ShowNotificationTip(Resources.TaskHelpers_TweetMessage_Tweet_successfully_sent_);
+        //                        }
+        //                    }
+        //                });
 
-                        return;
-                    }
-                }
+        //                return;
+        //            }
+        //        }
 
-                MessageBox.Show(Resources.TaskHelpers_TweetMessage_Unable_to_find_valid_Twitter_account_, "ShareX", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-        }
+        //        MessageBox.Show(Resources.TaskHelpers_TweetMessage_Unable_to_find_valid_Twitter_account_, "ShareX", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        //    }
+        //}
 
         public static EDataType FindDataType(string filePath, TaskSettings taskSettings)
         {

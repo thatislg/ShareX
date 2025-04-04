@@ -1597,13 +1597,6 @@
             resources.ApplyResources(this.tsmiTrayUploadClipboard, "tsmiTrayUploadClipboard");
             this.tsmiTrayUploadClipboard.Click += new System.EventHandler(this.tsbClipboardUpload_Click);
             // 
-            // tsmiTrayUploadText
-            // 
-            this.tsmiTrayUploadText.Image = global::ShareX.Properties.Resources.notebook;
-            this.tsmiTrayUploadText.Name = "tsmiTrayUploadText";
-            resources.ApplyResources(this.tsmiTrayUploadText, "tsmiTrayUploadText");
-            this.tsmiTrayUploadText.Click += new System.EventHandler(this.tsmiUploadText_Click);
-            // 
             // tsmiTrayUploadURL
             // 
             this.tsmiTrayUploadURL.Image = global::ShareX.Properties.Resources.drive;
