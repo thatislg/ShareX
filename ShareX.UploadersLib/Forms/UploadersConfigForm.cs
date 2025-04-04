@@ -27,7 +27,6 @@ using CG.Web.MegaApiClient;
 using ShareX.HelpersLib;
 using ShareX.UploadersLib.FileUploaders;
 using ShareX.UploadersLib.Properties;
-using ShareX.UploadersLib.URLShorteners;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -151,8 +150,6 @@ namespace ShareX.UploadersLib
             LoadImageUploaderSettings();
             LoadTextUploaderSettings();
             LoadFileUploaderSettings();
-            LoadURLShortenerSettings();
-            //LoadOtherUploaderSettings();
         }
 
         private void LoadImageUploaderSettings()
@@ -607,106 +604,6 @@ namespace ShareX.UploadersLib
 
             #endregion Google Cloud Storage
         }
-
-        private void LoadURLShortenerSettings()
-        {
-            #region bit.ly
-
-            if (OAuth2Info.CheckOAuth(Config.BitlyOAuth2Info))
-            {
-                oauth2Bitly.Status = OAuthLoginStatus.LoginSuccessful;
-            }
-
-            txtBitlyDomain.Text = Config.BitlyDomain;
-
-            #endregion bit.ly
-
-            #region yourls.org
-
-            txtYourlsAPIURL.Text = Config.YourlsAPIURL;
-            txtYourlsSignature.Text = Config.YourlsSignature;
-            txtYourlsUsername.Enabled = txtYourlsPassword.Enabled = string.IsNullOrEmpty(Config.YourlsSignature);
-            txtYourlsUsername.Text = Config.YourlsUsername;
-            txtYourlsPassword.Text = Config.YourlsPassword;
-
-            #endregion yourls.org
-
-            #region Polr
-
-            txtPolrAPIHostname.Text = Config.PolrAPIHostname;
-            txtPolrAPIKey.Text = Config.PolrAPIKey;
-            cbPolrIsSecret.Checked = Config.PolrIsSecret;
-            cbPolrUseAPIv1.Checked = Config.PolrUseAPIv1;
-
-            #endregion Polr
-
-            #region Firebase Dynamic Links
-
-            txtFirebaseWebAPIKey.Text = Config.FirebaseWebAPIKey;
-            txtFirebaseDomain.Text = Config.FirebaseDynamicLinkDomain;
-            cbFirebaseIsShort.Checked = Config.FirebaseIsShort;
-
-            #endregion Firebase Dynamic Links
-
-            #region Kutt
-
-            txtKuttHost.Text = Config.KuttSettings.Host;
-            txtKuttAPIKey.Text = Config.KuttSettings.APIKey;
-            txtKuttPassword.Text = Config.KuttSettings.Password;
-            txtKuttDomain.Text = Config.KuttSettings.Domain;
-            cbKuttReuse.Checked = Config.KuttSettings.Reuse;
-
-            #endregion Kutt
-
-            #region Zero Width Shortener
-
-            txtZWSURL.Text = Config.ZeroWidthShortenerURL;
-            txtZWSToken.Text = Config.ZeroWidthShortenerToken;
-
-            #endregion
-        }
-
-        //private void LoadOtherUploaderSettings()
-        //{
-        //    #region Twitter
-
-        //    lbTwitterAccounts.Items.Clear();
-
-        //    foreach (OAuthInfo twitterOAuth in Config.TwitterOAuthInfoList)
-        //    {
-        //        lbTwitterAccounts.Items.Add(twitterOAuth.Description);
-        //    }
-
-        //    if (CheckTwitterAccounts())
-        //    {
-        //        lbTwitterAccounts.SelectedIndex = Config.TwitterSelectedAccount;
-        //    }
-
-        //    TwitterUpdateSelected();
-
-        //    cbTwitterSkipMessageBox.Checked = Config.TwitterSkipMessageBox;
-        //    txtTwitterDefaultMessage.Text = Config.TwitterDefaultMessage;
-
-        //    #endregion Twitter
-        //}
-
-        #region Image uploaders      
-
-        #region vgy.me
-
-        //private void txtVgymeUserKey_TextChanged(object sender, EventArgs e)
-        //{
-        //    Config.VgymeUserKey = txtVgymeUserKey.Text;
-        //}
-
-        //private void llVgymeAccountDetailsPage_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        //{
-        //    URLHelpers.OpenURL("http://vgy.me/account/details");
-        //}
-
-        #endregion vgy.me
-
-        #endregion Image uploaders
 
         #region File uploaders
 
@@ -2373,146 +2270,6 @@ However, there is a workaround. You can navigate to the Google Drive website in 
         #endregion Google Cloud Storage
 
         #endregion File uploaders
-
-        #region URL shorteners
-
-        #region bit.ly
-
-        private void oauth2Bitly_OpenButtonClicked()
-        {
-            OAuth2Info oauth = new OAuth2Info(APIKeys.BitlyClientID, APIKeys.BitlyClientSecret);
-            Config.BitlyOAuth2Info = OAuth2Open(new BitlyURLShortener(oauth));
-        }
-
-        private void oauth2Bitly_CompleteButtonClicked(string code)
-        {
-            OAuth2Complete(new BitlyURLShortener(Config.BitlyOAuth2Info), code, oauth2Bitly);
-        }
-
-        private void oauth2Bitly_ClearButtonClicked()
-        {
-            Config.BitlyOAuth2Info = null;
-        }
-
-        private void txtBitlyDomain_TextChanged(object sender, EventArgs e)
-        {
-            Config.BitlyDomain = txtBitlyDomain.Text;
-        }
-
-        #endregion bit.ly
-
-        #region yourls.org
-
-        private void txtYourlsAPIURL_TextChanged(object sender, EventArgs e)
-        {
-            Config.YourlsAPIURL = txtYourlsAPIURL.Text;
-        }
-
-        private void txtYourlsSignature_TextChanged(object sender, EventArgs e)
-        {
-            Config.YourlsSignature = txtYourlsSignature.Text.Trim();
-            txtYourlsUsername.Enabled = txtYourlsPassword.Enabled = string.IsNullOrEmpty(Config.YourlsSignature);
-        }
-
-        private void txtYourlsUsername_TextChanged(object sender, EventArgs e)
-        {
-            Config.YourlsUsername = txtYourlsUsername.Text;
-        }
-
-        private void txtYourlsPassword_TextChanged(object sender, EventArgs e)
-        {
-            Config.YourlsPassword = txtYourlsPassword.Text;
-        }
-
-        #endregion yourls.org
-
-        #region Polr
-
-        private void txtPolrAPIHostname_TextChanged(object sender, EventArgs e)
-        {
-            Config.PolrAPIHostname = txtPolrAPIHostname.Text;
-        }
-
-        private void txtPolrAPIKey_TextChanged(object sender, EventArgs e)
-        {
-            Config.PolrAPIKey = txtPolrAPIKey.Text;
-        }
-
-        private void cbPolrIsSecret_CheckedChanged(object sender, EventArgs e)
-        {
-            Config.PolrIsSecret = cbPolrIsSecret.Checked;
-        }
-
-        private void cbPolrUseAPIv1_CheckedChanged(object sender, EventArgs e)
-        {
-            Config.PolrUseAPIv1 = cbPolrUseAPIv1.Checked;
-        }
-
-        #endregion Polr
-
-        #region Firebase Dynamic Links
-
-        private void txtFirebaseWebAPIKey_TextChanged(object sender, EventArgs e)
-        {
-            Config.FirebaseWebAPIKey = txtFirebaseWebAPIKey.Text;
-        }
-
-        private void txtFirebaseDomain_TextChanged(object sender, EventArgs e)
-        {
-            Config.FirebaseDynamicLinkDomain = txtFirebaseDomain.Text;
-        }
-
-        private void cbFirebaseIsShort_CheckedChanged(object sender, EventArgs e)
-        {
-            Config.FirebaseIsShort = cbFirebaseIsShort.Checked;
-        }
-
-        #endregion Firebase Dynamic Links
-
-        #region Kutt
-
-        private void txtKuttHost_TextChanged(object sender, EventArgs e)
-        {
-            Config.KuttSettings.Host = txtKuttHost.Text;
-        }
-
-        private void txtKuttAPIKey_TextChanged(object sender, EventArgs e)
-        {
-            Config.KuttSettings.APIKey = txtKuttAPIKey.Text;
-        }
-
-        private void txtKuttPassword_TextChanged(object sender, EventArgs e)
-        {
-            Config.KuttSettings.Password = txtKuttPassword.Text;
-        }
-
-        private void txtKuttDomain_TextChanged(object sender, EventArgs e)
-        {
-            Config.KuttSettings.Domain = txtKuttDomain.Text;
-        }
-
-        private void cbKuttReuse_CheckedChanged(object sender, EventArgs e)
-        {
-            Config.KuttSettings.Reuse = cbKuttReuse.Checked;
-        }
-
-        #endregion Kutt
-
-        #region Zero Width Shortener
-
-        private void txtZWSURL_TextChanged(object sender, EventArgs e)
-        {
-            Config.ZeroWidthShortenerURL = txtZWSURL.Text;
-        }
-
-        private void txtZWSToken_TextChanged(object sender, EventArgs e)
-        {
-            Config.ZeroWidthShortenerToken = txtZWSToken.Text;
-        }
-
-        #endregion
-
-        #endregion URL shorteners
 
         #region Other uploaders
 

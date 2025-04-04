@@ -28,7 +28,6 @@ using ShareX.HelpersLib;
 using ShareX.UploadersLib.FileUploaders;
 using ShareX.UploadersLib.Properties;
 using ShareX.UploadersLib.SharingServices;
-using ShareX.UploadersLib.URLShorteners;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -630,11 +629,6 @@ namespace ShareX.UploadersLib
                                 result = fileUploader.Upload(stream, "Test.png");
                                 result.Errors.Add(fileUploader.Errors);
                             }
-                            break;
-                        case CustomUploaderDestinationType.URLShortener:
-                            CustomURLShortener urlShortener = new CustomURLShortener(item);
-                            result = urlShortener.ShortenURL(Links.Website);
-                            result.Errors.Add(urlShortener.Errors);
                             break;
                         case CustomUploaderDestinationType.URLSharingService:
                             CustomURLSharer urlSharer = new CustomURLSharer(item);
