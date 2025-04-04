@@ -25,7 +25,6 @@
 
 using ShareX.HelpersLib;
 using ShareX.UploadersLib.FileUploaders;
-using ShareX.UploadersLib.ImageUploaders;
 using ShareX.UploadersLib.URLShorteners;
 using System.Collections.Generic;
 
@@ -33,17 +32,6 @@ namespace ShareX.UploadersLib
 {
     public class UploadersConfig : SettingsBase<UploadersConfig>
     {
-        #region Image uploaders
-
-        #region vgy.me
-
-        [JsonEncrypt]
-        public string VgymeUserKey { get; set; } = "";
-
-        #endregion vgy.me
-
-        #endregion Image uploaders
-
         #region Text uploaders
 
         #region Paste.ee

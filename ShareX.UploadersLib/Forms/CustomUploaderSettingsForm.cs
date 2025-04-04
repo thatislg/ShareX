@@ -26,7 +26,6 @@
 using Newtonsoft.Json;
 using ShareX.HelpersLib;
 using ShareX.UploadersLib.FileUploaders;
-using ShareX.UploadersLib.ImageUploaders;
 using ShareX.UploadersLib.Properties;
 using ShareX.UploadersLib.SharingServices;
 using ShareX.UploadersLib.URLShorteners;
@@ -624,14 +623,6 @@ namespace ShareX.UploadersLib
                 {
                     switch (type)
                     {
-                        case CustomUploaderDestinationType.ImageUploader:
-                            using (Stream stream = ShareXResources.Logo.GetStream())
-                            {
-                                CustomImageUploader imageUploader = new CustomImageUploader(item);
-                                result = imageUploader.Upload(stream, "Test.png");
-                                result.Errors.Add(imageUploader.Errors);
-                            }
-                            break;
                         case CustomUploaderDestinationType.FileUploader:
                             using (Stream stream = ShareXResources.Logo.GetStream())
                             {
