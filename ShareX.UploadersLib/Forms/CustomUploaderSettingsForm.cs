@@ -27,7 +27,6 @@ using Newtonsoft.Json;
 using ShareX.HelpersLib;
 using ShareX.UploadersLib.FileUploaders;
 using ShareX.UploadersLib.Properties;
-using ShareX.UploadersLib.SharingServices;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -629,11 +628,6 @@ namespace ShareX.UploadersLib
                                 result = fileUploader.Upload(stream, "Test.png");
                                 result.Errors.Add(fileUploader.Errors);
                             }
-                            break;
-                        case CustomUploaderDestinationType.URLSharingService:
-                            CustomURLSharer urlSharer = new CustomURLSharer(item);
-                            result = urlSharer.ShareURL(Links.Website);
-                            result.Errors.Add(urlSharer.Errors);
                             break;
                     }
                 }

@@ -31,7 +31,6 @@ using ShareX.MediaLib;
 using ShareX.Properties;
 using ShareX.ScreenCaptureLib;
 using ShareX.UploadersLib;
-using ShareX.UploadersLib.SharingServices;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -1329,12 +1328,12 @@ namespace ShareX
 
         public static void SearchImageUsingGoogleLens(string url)
         {
-            new GoogleLensSharingService().CreateSharer(null, null).ShareURL(url);
+            ///new GoogleLensSharingService().CreateSharer(null, null).ShareURL(url);
         }
 
         public static void SearchImageUsingBing(string url)
         {
-            new BingVisualSearchSharingService().CreateSharer(null, null).ShareURL(url);
+            //new BingVisualSearchSharingService().CreateSharer(null, null).ShareURL(url);
         }
 
         public static async Task OCRImage(TaskSettings taskSettings = null)
