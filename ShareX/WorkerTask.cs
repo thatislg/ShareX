@@ -45,7 +45,7 @@ namespace ShareX
         public delegate void TaskImageEventHandler(WorkerTask task, Bitmap image);
         public delegate void UploaderServiceEventHandler(IUploaderService uploaderService);
 
-        public event TaskEventHandler StatusChanged, UploadStarted, UploadProgressChanged, UploadCompleted, TaskCompleted;
+        public event TaskEventHandler StatusChanged, UploadProgressChanged, TaskCompleted;
         public event TaskImageEventHandler ImageReady;
         public event UploaderServiceEventHandler UploadersConfigWindowRequested;
 
@@ -369,180 +369,7 @@ namespace ShareX
 
         private void DoUploadJob()
         {
-            if (Program.Settings.ShowUploadWarning)
-            {
-                bool disableUpload = !FirstTimeUploadForm.ShowForm();
-
-                Program.Settings.ShowUploadWarning = false;
-
-                if (disableUpload)
-                {
-                    Program.DefaultTaskSettings.AfterCaptureJob = Program.DefaultTaskSettings.AfterCaptureJob.Remove(AfterCaptureTasks.UploadImageToHost);
-
-                    foreach (HotkeySettings hotkeySettings in Program.HotkeysConfig.Hotkeys)
-                    {
-                        if (hotkeySettings.TaskSettings != null)
-                        {
-                            hotkeySettings.TaskSettings.AfterCaptureJob = hotkeySettings.TaskSettings.AfterCaptureJob.Remove(AfterCaptureTasks.UploadImageToHost);
-                        }
-                    }
-
-                    Info.TaskSettings.AfterCaptureJob = Info.TaskSettings.AfterCaptureJob.Remove(AfterCaptureTasks.UploadImageToHost);
-                    Info.Result.IsURLExpected = false;
-                    RequestSettingUpdate = true;
-
-                    return;
-                }
-            }
-
-            if (Program.Settings.ShowLargeFileSizeWarning > 0)
-            {
-                long dataSize = Program.Settings.BinaryUnits ? Program.Settings.ShowLargeFileSizeWarning * 1024 * 1024 : Program.Settings.ShowLargeFileSizeWarning * 1000 * 1000;
-                if (Data != null && Data.Length > dataSize)
-                {
-                    using (MyMessageBox msgbox = new MyMessageBox(Resources.UploadTask_DoUploadJob_You_are_attempting_to_upload_a_large_file, "ShareX",
-                        MessageBoxButtons.YesNo, Resources.UploadManager_IsUploadConfirmed_Don_t_show_this_message_again_))
-                    {
-                        msgbox.ShowDialog();
-                        if (msgbox.IsChecked) Program.Settings.ShowLargeFileSizeWarning = 0;
-                        if (msgbox.DialogResult == DialogResult.No) Stop();
-                    }
-                }
-            }
-
-            if (!StopRequested)
-            {
-                SettingManager.WaitUploadersConfig();
-
-                Status = TaskStatus.Working;
-                Info.Status = Resources.UploadTask_DoUploadJob_Uploading;
-
-                TaskbarManager.SetProgressState(Program.MainForm, TaskbarProgressBarStatus.Normal);
-
-                bool cancelUpload = false;
-
-                if (Info.TaskSettings.AfterCaptureJob.HasFlag(AfterCaptureTasks.ShowBeforeUploadWindow))
-                {
-                    using (BeforeUploadForm form = new BeforeUploadForm(Info))
-                    {
-                        cancelUpload = form.ShowDialog() != DialogResult.OK;
-                    }
-                }
-
-                if (!cancelUpload)
-                {
-                    OnUploadStarted();
-
-                    bool isError = DoUpload(Data, Info.FileName);
-
-                    if (isError && Program.Settings.MaxUploadFailRetry > 0)
-                    {
-                        for (int retry = 1; !StopRequested && isError && retry <= Program.Settings.MaxUploadFailRetry; retry++)
-                        {
-                            DebugHelper.WriteLine("Upload failed. Retrying upload.");
-                            isError = DoUpload(Data, Info.FileName, retry);
-                        }
-                    }
-
-                    if (!isError)
-                    {
-                        OnUploadCompleted();
-                    }
-                }
-                else
-                {
-                    Info.Result.IsURLExpected = false;
-                }
-            }
-        }
-
-        private bool DoUpload(Stream data, string fileName, int retry = 0)
-        {
-            bool isError = false;
-
-            if (retry > 0)
-            {
-                if (Program.Settings.UseSecondaryUploaders)
-                {
-                    Info.TaskSettings.ImageDestination = Program.Settings.SecondaryImageUploaders[retry - 1];
-                    Info.TaskSettings.ImageFileDestination = Program.Settings.SecondaryFileUploaders[retry - 1];
-                    Info.TaskSettings.TextDestination = Program.Settings.SecondaryTextUploaders[retry - 1];
-                    Info.TaskSettings.TextFileDestination = Program.Settings.SecondaryFileUploaders[retry - 1];
-                    Info.TaskSettings.FileDestination = Program.Settings.SecondaryFileUploaders[retry - 1];
-                }
-                else
-                {
-                    Thread.Sleep(1000);
-                }
-            }
-
-            SSLBypassHelper sslBypassHelper = null;
-
-            try
-            {
-                if (HelpersOptions.AcceptInvalidSSLCertificates)
-                {
-                    sslBypassHelper = new SSLBypassHelper();
-                }
-
-                if (!CheckUploadFilters(data, fileName))
-                {
-                    switch (Info.UploadDestination)
-                    {
-                        case EDataType.Image:
-                            Info.Result = UploadImage(data, fileName);
-                            break;
-                        case EDataType.Text:
-                            Info.Result = UploadText(data, fileName);
-                            break;
-                        case EDataType.File:
-                            Info.Result = UploadFile(data, fileName);
-                            break;
-                    }
-                }
-
-                StopRequested |= taskReferenceHelper.StopRequested;
-            }
-            catch (Exception e)
-            {
-                if (!StopRequested)
-                {
-                    DebugHelper.WriteException(e);
-                    isError = true;
-                    AddErrorMessage(e.ToString());
-                }
-            }
-            finally
-            {
-                if (sslBypassHelper != null)
-                {
-                    sslBypassHelper.Dispose();
-                }
-
-                if (Info.Result == null)
-                {
-                    Info.Result = new UploadResult();
-                }
-
-                if (uploader != null)
-                {
-                    AddErrorMessage(uploader.Errors);
-                }
-
-                isError |= Info.Result.IsError;
-            }
-
-            return isError;
-        }
-
-        private void AddErrorMessage(UploaderErrorManager errors)
-        {
-            if (Info.Result == null)
-            {
-                Info.Result = new UploadResult();
-            }
-
-            Info.Result.Errors.Add(errors);
+           
         }
 
         private void AddErrorMessage(string error)
@@ -969,28 +796,6 @@ namespace ShareX
             return null;
         }
 
-        private bool CheckUploadFilters(Stream stream, string fileName)
-        {
-            if (Info.TaskSettings.UploadSettings.UploaderFilters != null && !string.IsNullOrEmpty(fileName) && stream != null)
-            {
-                UploaderFilter filter = Info.TaskSettings.UploadSettings.UploaderFilters.FirstOrDefault(x => x.IsValidFilter(fileName));
-
-                if (filter != null)
-                {
-                    IGenericUploaderService service = filter.GetUploaderService();
-
-                    if (service != null)
-                    {
-                        Info.Result = UploadData(service, stream, fileName);
-
-                        return true;
-                    }
-                }
-            }
-
-            return false;
-        }
-
         public UploadResult UploadImage(Stream stream, string fileName)
         {
             ImageUploaderService service = UploaderFactory.ImageUploaderServices[Info.TaskSettings.ImageDestination];
@@ -1182,22 +987,6 @@ namespace ShareX
                         ImageReady(this, image);
                     }
                 });
-            }
-        }
-
-        private void OnUploadStarted()
-        {
-            if (UploadStarted != null)
-            {
-                threadWorker.InvokeAsync(() => UploadStarted(this));
-            }
-        }
-
-        private void OnUploadCompleted()
-        {
-            if (UploadCompleted != null)
-            {
-                threadWorker.InvokeAsync(() => UploadCompleted(this));
             }
         }
 

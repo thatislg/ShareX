@@ -57,9 +57,7 @@ namespace ShareX
                 {
                     task.StatusChanged += Task_StatusChanged;
                     task.ImageReady += Task_ImageReady;
-                    task.UploadStarted += Task_UploadStarted;
-                    task.UploadProgressChanged += Task_UploadProgressChanged;
-                    task.UploadCompleted += Task_UploadCompleted;
+                    task.UploadProgressChanged += Task_UploadProgressChanged;  
                     task.TaskCompleted += Task_TaskCompleted;
                     task.UploadersConfigWindowRequested += Task_UploadersConfigWindowRequested;
                 }
@@ -383,13 +381,7 @@ namespace ShareX
                                         URL = result
                                     };
 
-                                    NotificationForm.Show(toastConfig);
-
-                                    if (info.TaskSettings.AfterUploadJob.HasFlag(AfterUploadTasks.ShowAfterUploadWindow) && info.IsUploadJob)
-                                    {
-                                        AfterUploadForm dlg = new AfterUploadForm(info);
-                                        NativeMethods.ShowWindow(dlg.Handle, (int)WindowShowStyle.ShowNoActivate);
-                                    }
+                                    NotificationForm.Show(toastConfig);    
                                 }
                             }
                         }

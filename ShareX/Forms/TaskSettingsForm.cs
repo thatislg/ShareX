@@ -40,7 +40,7 @@ namespace ShareX
         public TaskSettings TaskSettings { get; private set; }
         public bool IsDefault { get; private set; }
 
-        private ToolStripDropDownItem tsmiImageFileUploaders, tsmiTextFileUploaders;
+        private ToolStripDropDownItem tsmiTextFileUploaders;
         private bool loaded;
 
         public TaskSettingsForm(TaskSettings hotkeySetting, bool isDefault = false)
@@ -457,7 +457,7 @@ namespace ShareX
             if (Program.UploadersConfig != null)
             {
                 
-                EnableDisableToolStripMenuItems<FileDestination>(tsmiImageFileUploaders);
+                
                 EnableDisableToolStripMenuItems<TextDestination>(tsmiTextUploaders);
                 EnableDisableToolStripMenuItems<FileDestination>(tsmiTextFileUploaders);
                 EnableDisableToolStripMenuItems<FileDestination>(tsmiFileUploaders);
