@@ -2750,51 +2750,51 @@ namespace ShareX.UploadersLib
             // 
             // tpJira
             // 
-            this.tpJira.BackColor = System.Drawing.SystemColors.Window;
-            this.tpJira.Controls.Add(this.txtJiraIssuePrefix);
-            this.tpJira.Controls.Add(this.lblJiraIssuePrefix);
-            this.tpJira.Controls.Add(this.gbJiraServer);
-            this.tpJira.Controls.Add(this.oAuthJira);
-            resources.ApplyResources(this.tpJira, "tpJira");
-            this.tpJira.Name = "tpJira";
-            // 
-            // txtJiraIssuePrefix
-            // 
-            resources.ApplyResources(this.txtJiraIssuePrefix, "txtJiraIssuePrefix");
-            this.txtJiraIssuePrefix.Name = "txtJiraIssuePrefix";
-            this.txtJiraIssuePrefix.TextChanged += new System.EventHandler(this.txtJiraIssuePrefix_TextChanged);
-            // 
-            // lblJiraIssuePrefix
-            // 
-            resources.ApplyResources(this.lblJiraIssuePrefix, "lblJiraIssuePrefix");
-            this.lblJiraIssuePrefix.Name = "lblJiraIssuePrefix";
-            // 
-            // gbJiraServer
-            // 
-            this.gbJiraServer.Controls.Add(this.txtJiraConfigHelp);
-            this.gbJiraServer.Controls.Add(this.txtJiraHost);
-            this.gbJiraServer.Controls.Add(this.lblJiraHost);
-            resources.ApplyResources(this.gbJiraServer, "gbJiraServer");
-            this.gbJiraServer.Name = "gbJiraServer";
-            this.gbJiraServer.TabStop = false;
-            // 
-            // txtJiraConfigHelp
-            // 
-            this.txtJiraConfigHelp.BackColor = System.Drawing.SystemColors.Window;
-            resources.ApplyResources(this.txtJiraConfigHelp, "txtJiraConfigHelp");
-            this.txtJiraConfigHelp.Name = "txtJiraConfigHelp";
-            this.txtJiraConfigHelp.ReadOnly = true;
-            // 
-            // txtJiraHost
-            // 
-            resources.ApplyResources(this.txtJiraHost, "txtJiraHost");
-            this.txtJiraHost.Name = "txtJiraHost";
-            this.txtJiraHost.TextChanged += new System.EventHandler(this.txtJiraHost_TextChanged);
-            // 
-            // lblJiraHost
-            // 
-            resources.ApplyResources(this.lblJiraHost, "lblJiraHost");
-            this.lblJiraHost.Name = "lblJiraHost";
+            //this.tpJira.BackColor = System.Drawing.SystemColors.Window;
+            //this.tpJira.Controls.Add(this.txtJiraIssuePrefix);
+            //this.tpJira.Controls.Add(this.lblJiraIssuePrefix);
+            //this.tpJira.Controls.Add(this.gbJiraServer);
+            //this.tpJira.Controls.Add(this.oAuthJira);
+            //resources.ApplyResources(this.tpJira, "tpJira");
+            //this.tpJira.Name = "tpJira";
+            //// 
+            //// txtJiraIssuePrefix
+            //// 
+            //resources.ApplyResources(this.txtJiraIssuePrefix, "txtJiraIssuePrefix");
+            //this.txtJiraIssuePrefix.Name = "txtJiraIssuePrefix";
+            //this.txtJiraIssuePrefix.TextChanged += new System.EventHandler(this.txtJiraIssuePrefix_TextChanged);
+            //// 
+            //// lblJiraIssuePrefix
+            //// 
+            //resources.ApplyResources(this.lblJiraIssuePrefix, "lblJiraIssuePrefix");
+            //this.lblJiraIssuePrefix.Name = "lblJiraIssuePrefix";
+            //// 
+            //// gbJiraServer
+            //// 
+            //this.gbJiraServer.Controls.Add(this.txtJiraConfigHelp);
+            //this.gbJiraServer.Controls.Add(this.txtJiraHost);
+            //this.gbJiraServer.Controls.Add(this.lblJiraHost);
+            //resources.ApplyResources(this.gbJiraServer, "gbJiraServer");
+            //this.gbJiraServer.Name = "gbJiraServer";
+            //this.gbJiraServer.TabStop = false;
+            //// 
+            //// txtJiraConfigHelp
+            //// 
+            //this.txtJiraConfigHelp.BackColor = System.Drawing.SystemColors.Window;
+            //resources.ApplyResources(this.txtJiraConfigHelp, "txtJiraConfigHelp");
+            //this.txtJiraConfigHelp.Name = "txtJiraConfigHelp";
+            //this.txtJiraConfigHelp.ReadOnly = true;
+            //// 
+            //// txtJiraHost
+            //// 
+            //resources.ApplyResources(this.txtJiraHost, "txtJiraHost");
+            //this.txtJiraHost.Name = "txtJiraHost";
+            //this.txtJiraHost.TextChanged += new System.EventHandler(this.txtJiraHost_TextChanged);
+            //// 
+            //// lblJiraHost
+            //// 
+            //resources.ApplyResources(this.lblJiraHost, "lblJiraHost");
+            //this.lblJiraHost.Name = "lblJiraHost";
             // 
             // tpLambda
             // 
@@ -3797,16 +3797,6 @@ namespace ShareX.UploadersLib
             this.atcSendSpaceAccountType.Name = "atcSendSpaceAccountType";
             this.atcSendSpaceAccountType.SelectedAccountType = ShareX.UploadersLib.AccountType.Anonymous;
             this.atcSendSpaceAccountType.AccountTypeChanged += new ShareX.UploadersLib.AccountTypeControl.AccountTypeChangedEventHandler(this.atcSendSpaceAccountType_AccountTypeChanged);
-            // 
-            // oAuthJira
-            // 
-            resources.ApplyResources(this.oAuthJira, "oAuthJira");
-            this.oAuthJira.Name = "oAuthJira";
-            this.oAuthJira.UserInfo = null;
-            this.oAuthJira.OpenButtonClicked += new ShareX.UploadersLib.OAuthControl.OpenButtonClickedEventHandler(this.oAuthJira_OpenButtonClicked);
-            this.oAuthJira.CompleteButtonClicked += new ShareX.UploadersLib.OAuthControl.CompleteButtonClickedEventHandler(this.oAuthJira_CompleteButtonClicked);
-            this.oAuthJira.ClearButtonClicked += new ShareX.UploadersLib.OAuthControl.ClearButtonclickedEventHandler(this.oAuthJira_ClearButtonClicked);
-            this.oAuthJira.RefreshButtonClicked += new ShareX.UploadersLib.OAuthControl.RefreshButtonClickedEventHandler(this.oAuthJira_RefreshButtonClicked);
             // actRapidShareAccountType
             // 
             resources.ApplyResources(this.actRapidShareAccountType, "actRapidShareAccountType");
